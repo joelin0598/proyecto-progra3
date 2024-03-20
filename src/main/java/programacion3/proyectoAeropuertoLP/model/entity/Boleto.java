@@ -1,2 +1,7 @@
-package programacion3.proyectoAeropuertoLP.model.entity;public class Boleto {
+package programacion3.proyectoAeropuertoLP.model.entity;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+ public class Boleto {
 }
