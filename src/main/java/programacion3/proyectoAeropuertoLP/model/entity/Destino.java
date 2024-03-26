@@ -1,9 +1,9 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
-import java.io.Serializable;
-import java.sql.Timestamp;
+        import jakarta.persistence.*;
+        import lombok.*;
+        import java.sql.Timestamp;
+        import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
@@ -11,23 +11,31 @@ import java.sql.Timestamp;
 @ToString
 @Builder
 @Entity
-@Table(name = "destino")
+@Table(name ="destino")
 public class Destino implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "aerolinea_id", referencedColumnName = "id")
-    private Aerolinea aerolineaId;
+    @Column(name = "aerolinea_id")
+    private Integer aerolineaId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "aeropuerto_id", referencedColumnName = "id")
-    //private Aeropuerto aeropuertoId;
+    @Column(name = "aeropuerto_id")
+    private Integer aeropuertoId;
 
+    @Column(name = "descripcion")
     private String descripcion;
+
+    @Column(name = "fecha_creacion")
     private Timestamp fechaCreacion;
+
+    @Column(name = "fecha_modificacion")
     private Timestamp fechaModificacion;
+
+    @Column(name = "creado_por")
     private String creadoPor;
+
+    @Column(name = "modificado_por")
     private String modificadoPor;
 }

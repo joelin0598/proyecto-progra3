@@ -11,16 +11,15 @@ import java.security.Timestamp;
 @Builder
 @Entity
 @Table(name ="avion_aerolinea")
-public class avionAerolinea implements Serializable{
+public class avionAerolinea implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "avion_id", referencedColumnName = "id")
-    private Avion avionId;
+    @Column(name = "avion_id")
+    private Integer avionId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "aerolinea_id", referencedColumnName = "id")
-    private Aerolinea aerolineaId;
+    @Column(name = "aerolinea_id")
+    private Integer aerolineaId;
 }

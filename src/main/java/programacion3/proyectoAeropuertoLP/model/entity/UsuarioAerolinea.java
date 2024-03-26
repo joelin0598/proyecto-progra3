@@ -2,6 +2,7 @@ package programacion3.proyectoAeropuertoLP.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.io.Serializable;
 
 @Data
@@ -10,17 +11,16 @@ import java.io.Serializable;
 @ToString
 @Builder
 @Entity
-@Table(name = "usuario_aerolinea")
+@Table(name ="usuario_aerolinea")
 public class UsuarioAerolinea implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
-    private Usuario usuarioId;
+    @Column(name = "usuario_id")
+    private Integer usuarioId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "aerolinea_id", referencedColumnName = "id")
-    private Aerolinea aerolineaId;
+    @Column(name = "aerolinea_id")
+    private Integer aerolineaId;
 }
