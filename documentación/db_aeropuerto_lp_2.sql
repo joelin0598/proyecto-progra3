@@ -61,7 +61,7 @@ CREATE TABLE pasajero (
 );
 
 CREATE TABLE vuelo (
-    numero_vuelo VARCHAR(20) PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     aerolinea_id INT REFERENCES aerolinea(id),
     aeropuerto_salida_id INT REFERENCES aeropuerto(id),
     aeropuerto_llegada_id INT REFERENCES aeropuerto(id),
@@ -72,18 +72,7 @@ CREATE TABLE vuelo (
     precio_clase_ejecutiva DECIMAL(10, 2)
 );
 
---ENTIDAD VUELO*PASAJERO
-CREATE TABLE boleto (
-	id SERIAL PRIMARY key,
-    pasajero_id INT REFERENCES pasajero(id),
-    vuelo_numero_id VARCHAR(20) REFERENCES vuelo(numero_vuelo),
-    clase_vuelo VARCHAR(20),
-    asiento VARCHAR(10),
-    cantidad_maletas INT
-);
-
---CATALOGO DE TRIPULACION
-CREATE TABLE tripulacion (
+create table clase_vuelo(
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(100),
     descripcion TEXT,
@@ -93,12 +82,33 @@ CREATE TABLE tripulacion (
     modificado_por VARCHAR(100)
 );
 
+--ENTIDAD VUELO*PASAJERO
+CREATE TABLE boleto (
+	id SERIAL PRIMARY key,
+    pasajero_id INT REFERENCES pasajero(id),
+    numero_vuelo_id INT REFERENCES vuelo(id),
+    clase_vuelo_id INT references clase_vuelo(id),
+    asiento VARCHAR(10),
+    cantidad_maletas INT
+);
+
+--CATALOGO DE TRIPULACION
+CREATE TABLE tripulacion (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100),
+    tipo_puesto TEXT,-- Piloto, Copiloto, Ingeniero de vuelo, Tripulante de cabina
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fecha_modificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    creado_por VARCHAR(100),
+    modificado_por VARCHAR(100)
+);
+
+
 --ENTIDAD TRIPULACION*VUELO
 CREATE TABLE tripulacion_vuelo (
 	id SERIAL PRIMARY key,
     tripulacion_id INT REFERENCES tripulacion(id),
-    vuelo_numero VARCHAR(20) REFERENCES vuelo(numero_vuelo),
-    tipo VARCHAR(50) -- Piloto, Copiloto, Ingeniero de vuelo, Tripulante de cabina
+    numero_vuelo_id INT REFERENCES vuelo(id)
 );
 
 CREATE TABLE destino (
