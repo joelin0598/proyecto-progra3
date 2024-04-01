@@ -40,5 +40,5 @@ public class Tripulacion {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "tripulacion_id",referencedColumnName = "id")
-    private List<AsignacionTV> asignacionTVList = new ArrayList<>();
+    private List<TripulacionVuelo> tripulacionVueloList = new ArrayList<>();
 }
