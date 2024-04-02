@@ -1,7 +1,9 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +13,8 @@ import java.util.List;
 @ToString
 @Builder
 @Entity
-@Table (name = "pasajero")
-public class Pasajero {
+@Table(name="clase_vuelo")
+public class ClaseVuelo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -21,22 +23,22 @@ public class Pasajero {
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "pasaporte")
-    private String pasaporte;
+    @Column(name = "descripcion")
+    private String descripcion;
 
-    @Column(name = "nacionalidad")
-    private String nation;
+    @Column(name = "fecha_creacion")
+    private LocalDateTime fechaCreacion;
 
-    @Column(name = "edad")
-    private int edad;
+    @Column(name = "fecha_modificacion")
+    private LocalDateTime fechaModificacion;
 
-    @Column(name = "telefono")
-    private String tel;
+    @Column(name = "creado_por")
+    private String creadoPor;
 
-    @Column(name = "correo_electronico")
-    private String email;
+    @Column(name = "modificado_por")
+    private String modificadoPor;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "pasajero_id",referencedColumnName = "id")
+    @JoinColumn(name = "clase_vuelo_id",referencedColumnName = "id")
     private List<Boleto> boletoList = new ArrayList<>();
 }
