@@ -1,4 +1,5 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
@@ -17,9 +18,13 @@ public class avionAerolinea implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "avion_id")
-    private Integer avionId;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "avion_id",referencedColumnName = "id")
+    private Avion avionId;
 
-    @Column(name = "aerolinea_id")
-    private Integer aerolineaId;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
+    private Aerolinea aerolineaId;
 }

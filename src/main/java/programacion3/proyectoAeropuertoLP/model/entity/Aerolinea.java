@@ -5,6 +5,8 @@ package programacion3.proyectoAeropuertoLP.model.entity;
         import lombok.*;
         import java.sql.Timestamp;
         import java.io.Serializable;
+        import java.util.ArrayList;
+        import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -36,4 +38,21 @@ public class Aerolinea implements Serializable {
 
     @Column(name = "modificado_por")
     private String modificadoPor;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
+    private List<avionAerolinea> avionesAerolinea = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
+    private List<Vuelo> aerolineas = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
+    private List<Destino> destinos = new ArrayList<>();
+
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
+    private List<UsuarioAerolinea> usuarioAerolineas = new ArrayList<>();
 }

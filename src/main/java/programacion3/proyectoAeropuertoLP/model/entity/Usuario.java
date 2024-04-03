@@ -5,6 +5,8 @@ package programacion3.proyectoAeropuertoLP.model.entity;
         import lombok.*;
 
         import java.io.Serializable;
+        import java.util.ArrayList;
+        import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,6 +20,10 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "usuario_id",referencedColumnName = "id")
+    private List<UsuarioAerolinea> usuarioAerolineas = new ArrayList<>();
 
     @Column(name = "nombre")
     private String nombre;

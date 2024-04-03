@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -17,6 +19,14 @@ public class Avion implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "avion_id",referencedColumnName = "id")
+    private List<avionAerolinea> avionesAerolinea = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "avion_id",referencedColumnName = "id")
+    private List<Vuelo> vuelosAerolinea = new ArrayList<>();
 
     @Column(name = "modelo")
     private String modelo;
