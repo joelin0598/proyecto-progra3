@@ -1,21 +1,21 @@
 package programacion3.proyectoAeropuertoLP.model.dto;
+
 import lombok.*;
 import programacion3.proyectoAeropuertoLP.model.entity.Boleto;
-
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
 @ToString
 @Builder
-public class PasajeroDto {
+public class ClaseVueloDto {
 
     private Integer id;
     private String nombre;
-    private String pasaporte;
-    private String nation;
-    private int edad;
-    private String tel;
-    private String email;
+    private String descripcion;
+    private LocalDateTime fechaCreacion;
+    private LocalDateTime fechaModificacion;
+    private String creadoPor;
+    private String modificadoPor;
     private List<Boleto> boletoList;
 }
