@@ -41,18 +41,18 @@ public class Aerolinea implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
-    private List<avionAerolinea> avionesAerolinea = new ArrayList<>();
+    private List<AvionAerolinea> avionesAerolineaList = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
-    private List<Vuelo> aerolineas = new ArrayList<>();
+    private List<Vuelo> aerolineasList = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
-    private List<Destino> destinos = new ArrayList<>();
+    private List<Destino> destinosList = new ArrayList<>();
 
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
-    private List<UsuarioAerolinea> usuarioAerolineas = new ArrayList<>();
+    private List<UsuarioAerolinea> usuarioAerolineasList = new ArrayList<>();
 }

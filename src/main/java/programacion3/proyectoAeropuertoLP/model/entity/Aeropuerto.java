@@ -52,7 +52,4 @@ public class Aeropuerto {
     @JoinColumn(name = "aeropuerto_llegada_id",referencedColumnName = "id")
     private List<Vuelo> vueloLlegadaList = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "aeropuerto_llegada_id",referencedColumnName = "id")
-    private List<Destino> destinos = new ArrayList<>();
 }

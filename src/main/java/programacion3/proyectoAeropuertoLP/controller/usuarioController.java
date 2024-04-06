@@ -66,6 +66,30 @@ public class usuarioController {
 
         return ResponseEntity.ok(usuarioResponse);
     }
+    @PutMapping("/usuario/{id}")
+    public ResponseEntity<?> actualizarUsuario(@PathVariable Integer id, @RequestBody UsuarioDto usuarioDto) {
+        Usuario usuarioExistente = usuarioService.findById(id);
+        if (usuarioExistente == null) {
+            return new ResponseEntity<>(
+                    MensajeResponse.builder()
+                            .mensaje("El usuario con el ID " + id + " no existe.")
+                            .object(null)
+                            .build(),
+                    HttpStatus.NOT_FOUND
+            );
+        }
+
+        // Actualizando los campos del usuario existente con los datos proporcionados
+        usuarioExistente.setNombre(usuarioDto.getNombre());
+        usuarioExistente.setTipo(usuarioDto.getTipo());
+        // Agrega aquí cualquier otro campo que desees actualizar
+
+        // Guardar el usuario actualizado
+        Usuario usuarioActualizado = usuarioService.save(usuarioExistente);
+
+        return ResponseEntity.ok(usuarioActualizado);
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminarUsuario(@PathVariable Integer id) {

@@ -3,7 +3,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
-import java.security.Timestamp;
 
 @Data
 @AllArgsConstructor
@@ -12,7 +11,7 @@ import java.security.Timestamp;
 @Builder
 @Entity
 @Table(name ="avion_aerolinea")
-public class avionAerolinea implements Serializable {
+public class AvionAerolinea implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

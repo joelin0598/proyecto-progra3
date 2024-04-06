@@ -9,7 +9,7 @@ import lombok.ToString;
 @Data
 @ToString
 @Builder
-public class avionAerolineaDto implements Serializable {
+public class AvionAerolineaDto implements Serializable {
     private Integer id;
     private Integer avionId;
     private Integer aerolineaId;
