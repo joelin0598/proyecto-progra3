@@ -9,7 +9,7 @@ import programacion3.proyectoAeropuertoLP.service.IUsuario;
 import java.util.List;
 
 @Service
-public class usuarioI implements IUsuario {
+public class UsuarioI implements IUsuario {
 
     @Autowired
     private UsuarioDao usuarioDao;
