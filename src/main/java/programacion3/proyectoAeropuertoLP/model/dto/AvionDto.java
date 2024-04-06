@@ -3,9 +3,12 @@ package programacion3.proyectoAeropuertoLP.model.dto;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
+import programacion3.proyectoAeropuertoLP.model.entity.Vuelo;
+import programacion3.proyectoAeropuertoLP.model.entity.AvionAerolinea;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @ToString
@@ -21,4 +24,6 @@ public class AvionDto implements Serializable {
     private Timestamp fechaModificacion;
     private String creadoPor;
     private String modificadoPor;
+    private List<AvionAerolinea> avionesAerolineaList;
+    private List<Vuelo> vuelosAerolineaList;
 }

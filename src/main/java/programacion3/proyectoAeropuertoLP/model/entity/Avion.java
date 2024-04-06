@@ -20,14 +20,6 @@ public class Avion implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "avion_id",referencedColumnName = "id")
-    private List<avionAerolinea> avionesAerolinea = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "avion_id",referencedColumnName = "id")
-    private List<Vuelo> vuelosAerolinea = new ArrayList<>();
-
     @Column(name = "modelo")
     private String modelo;
 
@@ -54,4 +46,12 @@ public class Avion implements Serializable {
 
     @Column(name = "modificado_por")
     private String modificadoPor;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "avion_id",referencedColumnName = "id")
+    private List<AvionAerolinea> avionesAerolineaList = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "avion_id",referencedColumnName = "id")
+    private List<Vuelo> vuelosAerolineaList = new ArrayList<>();
 }
