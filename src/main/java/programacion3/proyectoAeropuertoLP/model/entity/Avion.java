@@ -47,11 +47,9 @@ public class Avion implements Serializable {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "avion_id",referencedColumnName = "id")
-    private List<AvionAerolinea> avionesAerolineaList = new ArrayList<>();
+    @OneToMany(mappedBy = "avionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Vuelo> numeroVueloList = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "avion_id",referencedColumnName = "id")
-    private List<Vuelo> vuelosAerolineaList = new ArrayList<>();
+    @OneToMany(mappedBy = "avionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<AvionAerolinea> avionAerolineaList = new ArrayList<>();
 }

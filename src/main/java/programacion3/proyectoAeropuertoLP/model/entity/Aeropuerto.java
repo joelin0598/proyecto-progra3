@@ -44,12 +44,12 @@ public class Aeropuerto {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "aeropuerto_salida_id",referencedColumnName = "id")
-    private List<Vuelo> vueloSalidaList = new ArrayList<>();
+    @OneToMany(mappedBy = "aeropuertoSalidaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Vuelo> numeroVueloSalidaList = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "aeropuerto_llegada_id",referencedColumnName = "id")
-    private List<Vuelo> vueloLlegadaList = new ArrayList<>();
+    @OneToMany(mappedBy = "aeropuertoLlegadaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Vuelo> numeroVueloLlegadaList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "aeropuertoId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Destino> destinoList = new ArrayList<>();
 }

@@ -38,7 +38,6 @@ public class Tripulacion {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "tripulacion_id",referencedColumnName = "id")
+    @OneToMany(mappedBy = "tripulacionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<TripulacionVuelo> tripulacionVueloList = new ArrayList<>();
 }

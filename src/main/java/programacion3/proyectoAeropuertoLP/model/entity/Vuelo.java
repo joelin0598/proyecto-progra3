@@ -23,8 +23,9 @@ public class Vuelo {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "aerolinea_id")
-    private int aerolineaId;
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
+    private Aerolinea aerolineaId;
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -36,8 +37,9 @@ public class Vuelo {
     @JoinColumn(name = "aeropuerto_llegada_id",referencedColumnName = "id")
     private Aeropuerto aeropuertoLlegadaId;
 
-    @Column(name = "avion_id")
-    private int avionId;
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "avion_id",referencedColumnName = "id")
+    private Avion avionId;
 
     @Column(name = "fecha_hora_salida")
     private LocalDate fechaHoraSalida;
@@ -51,11 +53,9 @@ public class Vuelo {
     @Column(name = "precio_clase_ejecutiva")
     private float precioClaseEjecutiva;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "numero_vuelo_id",referencedColumnName = "id")
+    @OneToMany(mappedBy = "numeroVueloId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Boleto> boletoList = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "tripulacion_id",referencedColumnName = "id")
+    @OneToMany(mappedBy = "numeroVueloId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<TripulacionVuelo> tripulacionVueloList = new ArrayList<>();
 }

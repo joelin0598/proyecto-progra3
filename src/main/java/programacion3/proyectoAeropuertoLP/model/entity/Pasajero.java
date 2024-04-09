@@ -36,7 +36,6 @@ public class Pasajero {
     @Column(name = "correo_electronico")
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "pasajero_id",referencedColumnName = "id")
+    @OneToMany(mappedBy = "pasajeroId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Boleto> boletoList = new ArrayList<>();
 }

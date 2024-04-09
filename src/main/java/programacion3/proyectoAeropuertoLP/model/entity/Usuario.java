@@ -21,9 +21,8 @@ public class Usuario implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "usuario_id",referencedColumnName = "id")
-    private List<UsuarioAerolinea> usuarioAerolineas = new ArrayList<>();
+    @OneToMany(mappedBy = "usuarioId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<UsuarioAerolinea> usuarioAerolineaList = new ArrayList<>();
 
     @Column(name = "nombre")
     private String nombre;

@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Builder
 @Entity
 @Table(name ="avion_aerolinea")
-public class AvionAerolinea implements Serializable {
+public class AvionAerolinea{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -23,7 +23,7 @@ public class AvionAerolinea implements Serializable {
     private Avion avionId;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
     private Aerolinea aerolineaId;
 }

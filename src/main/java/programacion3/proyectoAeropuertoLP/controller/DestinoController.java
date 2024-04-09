@@ -28,8 +28,8 @@ public class DestinoController {
         List<DestinoDto> destinoDtos = destinos.stream()
                 .map(destino -> DestinoDto.builder()
                         .id(destino.getId())
-                        .aerolineaId(destino.getAerolineaId())
-                        .aeropuertoId(destino.getAeropuertoId())
+                        //.aerolineaId(destino.getAerolineaId())
+                        //.aeropuertoId(destino.getAeropuertoId())
 
                         .descripcion(destino.getDescripcion())
                         .fechaCreacion(destino.getFechaCreacion())
@@ -55,8 +55,8 @@ public class DestinoController {
         }
         DestinoDto destinoDto = DestinoDto.builder()
                 .id(destino.getId())
-                .aerolineaId(destino.getAerolineaId())
-                .aeropuertoId(destino.getAeropuertoId())
+                //.aerolineaId(destino.getAerolineaId())
+                //.aeropuertoId(destino.getAeropuertoId())
                 .descripcion(destino.getDescripcion())
                 .fechaCreacion(destino.getFechaCreacion())
                 .fechaModificacion(destino.getFechaModificacion())
@@ -72,8 +72,8 @@ public class DestinoController {
         Destino destino = new Destino();
 
         destino.setId(destinoDto.getId());
-        destino.setAerolineaId(destinoDto.getAerolineaId());
-        destino.setAeropuertoId(destinoDto.getAeropuertoId());
+        //destino.setAerolineaId(destinoDto.getAerolineaId());
+        //destino.setAeropuertoId(destinoDto.getAeropuertoId());
         destino.setDescripcion(destinoDto.getDescripcion());
 
         // Convierte LocalDateTime a Timestamp
@@ -102,8 +102,8 @@ public class DestinoController {
 
         // Actualizar los campos del destino existente con los datos proporcionados
         destinoExistente.setDescripcion(destinoDto.getDescripcion());
-        destinoExistente.setAerolineaId(destinoDto.getAerolineaId());
-        destinoExistente.setAeropuertoId(destinoDto.getAeropuertoId());
+        //destinoExistente.setAerolineaId(destinoDto.getAerolineaId());
+        //destinoExistente.setAeropuertoId(destinoDto.getAeropuertoId());
         destinoExistente.setCreadoPor(destinoDto.getCreadoPor());
 
         // Convierte LocalDateTime a Timestamp
