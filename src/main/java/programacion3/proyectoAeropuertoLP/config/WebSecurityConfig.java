@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 public class WebSecurityConfig {
+
     @Bean
     public UserDetailsService(){
         return new UserDetailsServiceImpl();
