@@ -52,5 +52,4 @@ public class Avion implements Serializable {
 
     @OneToMany(mappedBy = "avionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<AvionAerolinea> avionAerolineaList = new ArrayList<>();
-
 }
