@@ -1,7 +1,10 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.*;
-
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,29 +15,46 @@ import java.util.List;
 @Builder
 @Entity
 @Table (name = "pasajero")
-public class Pasajero {
+public class Pasajero implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "nombre")
-    private String nombre;
-
-    @Column(name = "pasaporte")
+    @Column(name = "pasaporte", unique = true)
     private String pasaporte;
+
+    @Column(name = "nombres")
+    private String nombres;
+
+    @Column(name = "apellidos")
+    private String apellidos;
+
+    @Column(name = "fecha_nacimiento")
+    private String fechaNacimiento;
 
     @Column(name = "nacionalidad")
     private String nation;
 
-    @Column(name = "edad")
-    private int edad;
+    @Column(name = "correo_electronico")
+    private String email;
+
+    @Column(name = "codigo_area_pais")
+    private String codigoAreaPais;
 
     @Column(name = "telefono")
     private String tel;
 
-    @Column(name = "correo_electronico")
-    private String email;
+    @Column(name = "telefono_emergencias")
+    private String telEmergencias;
+
+    @Column(name = "direccion")
+    private String direccion;
+
+    @Column(name = "password")
+    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+=]).*$", message = "El formato de la contraseña no es válido")
+    private String password;
 
     @OneToMany(mappedBy = "pasajeroId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Boleto> boletoList = new ArrayList<>();
