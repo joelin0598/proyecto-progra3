@@ -1,5 +1,6 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
 
+        import com.fasterxml.jackson.annotation.JsonIgnore;
         import jakarta.persistence.*;
         import lombok.*;
         import java.sql.Timestamp;
@@ -18,11 +19,15 @@ public class Destino implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "aerolinea_id")
-    private Integer aerolineaId;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
+    private Aerolinea aerolineaId;
 
-    @Column(name = "aeropuerto_id")
-    private Integer aeropuertoId;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "aeropuerto_id",referencedColumnName = "id")
+    private Aeropuerto aeropuertoId;
 
     @Column(name = "descripcion")
     private String descripcion;

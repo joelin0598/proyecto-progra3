@@ -1,21 +1,49 @@
 package programacion3.proyectoAeropuertoLP.model.dto;
+import jakarta.validation.constraints.*;
 import lombok.*;
-import programacion3.proyectoAeropuertoLP.model.entity.Boleto;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
 @Data
 @ToString
 @Builder
-public class PasajeroDto {
+public class PasajeroDto implements Serializable {
 
-    private Integer id;
-    private String nombre;
+    @NotBlank
+    @Size(max = 15, message = "El campo debe tener como máximo {max} caracteres")
     private String pasaporte;
+
+    @NotBlank
+    private String nombres;
+
+    @NotBlank
+    private String apellidos;
+
+    @NotBlank
+    private String fechaNacimiento;
+
     private String nation;
-    private int edad;
-    private String tel;
+
+    @NotBlank
+    @Email
+    @Size(max = 100)
     private String email;
-    private List<Boleto> boletoList;
+
+    @NotBlank
+    private String codigoAreaPais;
+
+    @NotBlank
+    @Size(max = 8)
+    private String tel;
+
+    @NotBlank
+    @Size(max = 8)
+    private String telEmergencias;
+
+    @NotBlank
+    private String direccion;
+
+    @NotBlank
+    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+=]).*$", message = "El formato de la contraseña no es válido")
+    private String password;
 }

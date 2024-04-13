@@ -39,20 +39,16 @@ public class Aerolinea implements Serializable {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
-    private List<AvionAerolinea> avionesAerolineaList = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
-    private List<Vuelo> aerolineasList = new ArrayList<>();
+    @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<AvionAerolinea> avionAerolineaList = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
+    @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Vuelo> numeroVueloList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Destino> destinosList = new ArrayList<>();
 
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
-    private List<UsuarioAerolinea> usuarioAerolineasList = new ArrayList<>();
+    @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<UsuarioAerolinea> usuarioAerolineaList = new ArrayList<>();
 }
