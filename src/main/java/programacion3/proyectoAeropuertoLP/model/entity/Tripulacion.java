@@ -40,4 +40,7 @@ public class Tripulacion {
 
     @OneToMany(mappedBy = "tripulacionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<TripulacionVuelo> tripulacionVueloList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "tripulacionId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<AvionTripulacion> avionTripulacionList = new ArrayList<>();
 }

@@ -41,6 +41,9 @@ public class Vuelo {
     @JoinColumn(name = "avion_id",referencedColumnName = "id")
     private Avion avionId;
 
+    @Column(name = "asientos_disponibles")
+    private Integer asientosDisponibles;
+
     @Column(name = "fecha_hora_salida")
     private LocalDate fechaHoraSalida;
 

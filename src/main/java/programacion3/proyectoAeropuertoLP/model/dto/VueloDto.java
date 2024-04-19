@@ -18,6 +18,7 @@ public class VueloDto {
     private Aeropuerto aeropuertoSalidaId;
     private Aeropuerto aeropuertoLlegadaId;
     private int avionId;
+    private Integer asientosDisponibles;
     private LocalDate fechaHoraSalida;
     private LocalDateTime fechaHoraLlegada;
     private float precioClaseEconomica;

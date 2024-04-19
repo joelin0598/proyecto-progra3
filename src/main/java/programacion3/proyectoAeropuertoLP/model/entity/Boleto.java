@@ -33,8 +33,10 @@ import lombok.*;
  @JoinColumn(name = "clase_vuelo_id",referencedColumnName = "id")
  private ClaseVuelo claseVueloId;
 
- @Column(name="asientos")
- private String asientos;
+ @JsonIgnore
+ @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+ @JoinColumn(name="asiento_id",referencedColumnName = "id")
+ private Asientos asientoId;
 
  @Column(name = "cantidad_maletas")
  private int cantidadMaletas;

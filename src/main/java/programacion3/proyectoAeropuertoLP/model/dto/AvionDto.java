@@ -18,7 +18,7 @@ public class AvionDto implements Serializable {
     private String modelo;
     private String marca;
     private Integer anio;
-    private Integer capacidadPasajeros;
+    private Integer maxAsientos;
     private String descripcion;
     private Timestamp fechaCreacion;
     private Timestamp fechaModificacion;

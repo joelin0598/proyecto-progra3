@@ -29,8 +29,8 @@ public class Avion implements Serializable {
     @Column(name = "anio")
     private Integer anio;
 
-    @Column(name = "capacidad_pasajeros")
-    private Integer capacidadPasajeros;
+    @Column(name = "max_asientos")
+    private Integer maxAsientos;
 
     @Column(name = "descripcion")
     private String descripcion;
@@ -52,4 +52,10 @@ public class Avion implements Serializable {
 
     @OneToMany(mappedBy = "avionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<AvionAerolinea> avionAerolineaList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "avionId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<AvionTripulacion> avionTripulacionList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "avionId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<Asientos> asientosList = new ArrayList<>();
 }
