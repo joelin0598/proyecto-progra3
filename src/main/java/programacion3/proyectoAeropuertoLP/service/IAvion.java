@@ -7,8 +7,10 @@ import java.util.List;
 public interface IAvion {
 
     Avion save(Avion avion);
+    Avion update(Avion avion);
     Avion findById(Integer id);
-    void delete(Avion avion);
     List<Avion> findAll();
+    void delete(Avion avion);
+
 }
 

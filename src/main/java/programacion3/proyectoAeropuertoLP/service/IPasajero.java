@@ -8,8 +8,8 @@ public interface IPasajero {
     Pasajero save(Pasajero pasajero);
     Pasajero update(Pasajero pasajero);
     Pasajero findById(Integer id);
-    void delete(Pasajero pasajero);
     List<Pasajero> findAll();
+    void delete(Pasajero pasajero);
     boolean existsByPasaporte(String pasaporte);
     //boolean isValidPassword(String password);
 }

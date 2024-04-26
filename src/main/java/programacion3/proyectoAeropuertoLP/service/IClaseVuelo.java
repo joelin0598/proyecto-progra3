@@ -8,6 +8,6 @@ public interface IClaseVuelo {
     ClaseVuelo save(ClaseVuelo claseVuelo);
     ClaseVuelo update(ClaseVuelo claseVuelo);
     ClaseVuelo findById(Integer id);
-    void delete(ClaseVuelo claseVuelo);
     List<ClaseVuelo> findAll();
+    void delete(ClaseVuelo claseVuelo);
 }

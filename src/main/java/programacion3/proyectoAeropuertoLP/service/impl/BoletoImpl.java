@@ -32,15 +32,15 @@ public class BoletoImpl implements IBoleto {
         return boletoDao.findById(id).orElse(null);
     }
 
-    @Transactional(readOnly = true)
-    @Override
-    public void delte(Boleto boleto) {
-        boletoDao.delete(boleto);
-    }
-
     @Transactional
     @Override
     public List<Boleto> findAll() {
         return (List<Boleto>) boletoDao.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public void delete(Boleto boleto) {
+        boletoDao.delete(boleto);
     }
 }

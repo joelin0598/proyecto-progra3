@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name ="asientos")
-public class Asientos implements Serializable {
+public class Asientos{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

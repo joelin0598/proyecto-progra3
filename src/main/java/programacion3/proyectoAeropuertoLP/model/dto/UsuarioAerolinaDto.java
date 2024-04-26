@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 @ToString
 @Builder
-public class UsuarioAerolinaDto implements Serializable {
+public class UsuarioAerolinaDto{
     private Integer id;
     private Usuario usuarioId;
     private Aerolinea aerolineaId;

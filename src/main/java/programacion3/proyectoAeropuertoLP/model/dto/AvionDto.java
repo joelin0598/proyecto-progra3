@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @ToString
 @Builder
-public class AvionDto implements Serializable {
+public class AvionDto{
     private Integer id;
     private String modelo;
     private String marca;

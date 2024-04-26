@@ -13,7 +13,7 @@ package programacion3.proyectoAeropuertoLP.model.entity;
 @Builder
 @Entity
 @Table(name ="destino")
-public class Destino implements Serializable {
+public class Destino{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

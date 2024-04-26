@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @ToString
 @Builder
-public class AeropuertoDto {
+public class AeropuertoDto{
 
     private Integer id;
     private String nombre;

@@ -1,10 +1,9 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
-
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -13,7 +12,7 @@ import java.sql.Timestamp;
 @Builder
 @Entity
 @Table(name ="estado_asignacion")
-public class EstadoAsignacion implements Serializable {
+public class EstadoAsignacion{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,4 +33,7 @@ public class EstadoAsignacion implements Serializable {
 
     @Column(name = "modificado_por")
     private String modificadoPor;
+
+    @OneToMany(mappedBy = "estadoAsignacionId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<AvionTripulacion> avionTripulacionList = new ArrayList<>();
 }

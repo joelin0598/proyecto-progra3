@@ -6,7 +6,7 @@ import java.io.Serializable;
 @Data
 @ToString
 @Builder
-public class PasajeroDto implements Serializable {
+public class PasajeroDto{
 
     @NotBlank
     @NotEmpty

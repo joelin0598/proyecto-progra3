@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Data
@@ -13,8 +12,8 @@ import java.sql.Timestamp;
 @ToString
 @Builder
 @Entity
-@Table(name ="avion")
-public class AvionTripulacion implements Serializable {
+@Table(name ="avionTripulacion")
+public class AvionTripulacion{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @ToString
 @Builder
-public class AerolineaDto implements Serializable {
+public class AerolineaDto{
     private Integer id;
     private String nombre;
     private String descripcion;

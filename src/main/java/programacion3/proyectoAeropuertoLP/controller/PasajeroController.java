@@ -13,6 +13,7 @@ import programacion3.proyectoAeropuertoLP.service.IPasajero;
 @RequestMapping("/api/v1")
 @CrossOrigin(origins = "*")
 public class PasajeroController {
+
     @Autowired
     private IPasajero pasajeroService;
 

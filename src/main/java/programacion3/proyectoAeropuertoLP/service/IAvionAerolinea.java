@@ -7,7 +7,8 @@ import java.util.List;
 public interface IAvionAerolinea {
 
     AvionAerolinea save(AvionAerolinea avionAerolinea);
+    AvionAerolinea update(AvionAerolinea avionAerolinea);
     AvionAerolinea findById(Integer id);
-    void delete(AvionAerolinea avionAerolinea);
     List<AvionAerolinea> findAll();
+    void delete(AvionAerolinea avionAerolinea);
 }

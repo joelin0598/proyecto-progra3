@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Data
 @ToString
 @Builder
-public class UsuarioDto implements Serializable {
+public class UsuarioDto{
 
     private Integer id;
     private String nombre;

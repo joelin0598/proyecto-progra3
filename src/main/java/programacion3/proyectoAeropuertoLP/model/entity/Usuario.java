@@ -15,7 +15,7 @@ package programacion3.proyectoAeropuertoLP.model.entity;
 @Builder
 @Entity
 @Table(name ="usuario")
-public class Usuario implements Serializable {
+public class Usuario{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
