@@ -15,6 +15,7 @@ import java.util.List;
 @Builder
 public class AvionDto{
     private Integer id;
+    private boolean estado;
     private String modelo;
     private String marca;
     private Integer anio;

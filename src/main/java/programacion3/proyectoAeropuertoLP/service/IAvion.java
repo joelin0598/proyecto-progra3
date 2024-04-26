@@ -10,6 +10,8 @@ public interface IAvion {
     Avion update(Avion avion);
     Avion findById(Integer id);
     List<Avion> findAll();
+
+    List<Avion> findActiveByAerolineaId(Integer aerolineaId);
     void delete(Avion avion);
 
 }

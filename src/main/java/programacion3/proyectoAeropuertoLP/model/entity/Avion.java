@@ -20,6 +20,9 @@ public class Avion{
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "estado")
+    private boolean estado;
+
     @Column(name = "modelo")
     private String modelo;
 
