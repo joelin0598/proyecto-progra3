@@ -1,5 +1,6 @@
 package programacion3.proyectoAeropuertoLP.service;
 
+import programacion3.proyectoAeropuertoLP.model.dto.AvionDto;
 import programacion3.proyectoAeropuertoLP.model.entity.Vuelo;
 
 import java.util.List;

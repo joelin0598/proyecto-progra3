@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface AvionDao extends JpaRepository<Avion, Integer> {
     List<Avion> findActiveByAerolineaId(Integer aerolineaId);
-
+    List<Avion> findActiveByAerolineaIdAndEstadoTrue(Integer aerolineaId);
+    List<Avion> obtenerListaAviones(Integer estado);
 }

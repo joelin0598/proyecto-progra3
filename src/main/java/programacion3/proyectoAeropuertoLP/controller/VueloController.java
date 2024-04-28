@@ -30,7 +30,7 @@ public class VueloController {
     private IAeropuerto aeropuertoService;
 
     @PostMapping("post/vuelos")
-    public ResponseEntity<?> crearVuelos(@Valid @RequestBody VueloDto vueloDto) {
+    public ResponseEntity<?> crearVuelos(@Valid @RequestBody VueloDto vueloDto) throws Exception {
         Vuelo vuelo = new Vuelo();
 
         vuelo.setAvionId(avionService.findById(vueloDto.getAvionId()));
@@ -47,5 +47,4 @@ public class VueloController {
          */
         return ResponseEntity.ok(vueloResponse);
     }
-
 }

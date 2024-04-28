@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Entity
 @Table(name ="avion_aerolinea")
 public class AvionAerolinea{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

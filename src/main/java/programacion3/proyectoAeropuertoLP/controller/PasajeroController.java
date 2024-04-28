@@ -1,6 +1,7 @@
 package programacion3.proyectoAeropuertoLP.controller;
 
 import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +18,14 @@ public class PasajeroController {
     @Autowired
     private IPasajero pasajeroService;
 
+    @Autowired
+    private ModelMapper modelMapper ;
     @PostMapping("post/pasajeros")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> crearPasajeros(@Valid @RequestBody PasajeroDto pasajeroDto) {
         Pasajero pasajero = new Pasajero();
-
+        pasajero= modelMapper.map(pasajeroDto, Pasajero.class);
+        /*
         pasajero.setPasaporte(pasajeroDto.getPasaporte());
         pasajero.setNombres(pasajeroDto.getNombres());
         pasajero.setApellidos(pasajeroDto.getApellidos());
@@ -32,7 +36,7 @@ public class PasajeroController {
         pasajero.setTel(pasajeroDto.getTel());
         pasajero.setTelEmergencias(pasajeroDto.getTelEmergencias());
         pasajero.setDireccion(pasajeroDto.getDireccion());
-        pasajero.setPassword(pasajeroDto.getPassword());
+        pasajero.setPassword(pasajeroDto.getPassword());*/
         Pasajero pasajeroResponse = pasajeroService.save(pasajero);
         return ResponseEntity.ok(pasajeroResponse);
     }

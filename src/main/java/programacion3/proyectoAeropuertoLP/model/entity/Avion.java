@@ -2,7 +2,6 @@ package programacion3.proyectoAeropuertoLP.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;

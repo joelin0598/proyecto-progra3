@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import programacion3.proyectoAeropuertoLP.model.dao.AerolineaDao;
+import programacion3.proyectoAeropuertoLP.model.dao.AvionDao;
 import programacion3.proyectoAeropuertoLP.model.dao.VueloDao;
-import programacion3.proyectoAeropuertoLP.model.entity.Aerolinea;
 import programacion3.proyectoAeropuertoLP.model.entity.Vuelo;
 import programacion3.proyectoAeropuertoLP.service.IVuelo;
 
@@ -19,11 +19,15 @@ public class VueloImpl implements IVuelo {
     @Autowired
     private AerolineaDao aerolineaDao;
 
+    @Autowired
+    private AvionDao avionDao;
+
     @Transactional
     @Override
     public Vuelo save(Vuelo vuelo) throws Exception{
         // Validar que la aerolínea tenga aviones en estado "Activo"
-        Aerolinea aerolinea = aerolineaDao.findById(vuelo.getAerolineaId().getId()).orElseThrow(()-> new Exception("Aerolinea no encontrada"));
+         aerolineaDao.findById(vuelo.getAerolineaId().getId()).orElseThrow(()-> new Exception("Aerolinea no encontrada"));
+
         return vueloDao.save(vuelo);
     }
 

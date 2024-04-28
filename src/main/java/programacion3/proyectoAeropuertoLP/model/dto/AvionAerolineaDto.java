@@ -10,6 +10,7 @@ import lombok.ToString;
 @ToString
 @Builder
 public class AvionAerolineaDto{
+
     private Integer id;
     private Integer avionId;
     private Integer aerolineaId;
