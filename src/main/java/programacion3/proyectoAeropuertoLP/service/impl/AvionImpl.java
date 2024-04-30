@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import programacion3.proyectoAeropuertoLP.model.dao.AvionDao;
-import programacion3.proyectoAeropuertoLP.model.dto.AvionDto;
 import programacion3.proyectoAeropuertoLP.model.entity.Avion;
 import programacion3.proyectoAeropuertoLP.service.IAvion;
 
@@ -17,9 +16,6 @@ public class AvionImpl implements IAvion {
     @Autowired
     private AvionDao avionDao;
 
-    @Autowired
-    private ModelMapper modelMapper;
-
     @Transactional
     @Override
     public Avion save(Avion avion) {
@@ -30,14 +26,6 @@ public class AvionImpl implements IAvion {
     @Override
     public Avion update(Avion avion) {
         return avionDao.save(avion);
-    }
-
-
-    @Transactional
-    @Override
-    public List<AvionDto> obtenerListaAviones(Integer id){
-        List<Avion> listAvion= avionDao.findActiveByAerolineaIdAndEstadoTrue(id);
-        return modelMapper.map(listAvion,List.class);
     }
 
     @Transactional(readOnly = true)
@@ -52,19 +40,11 @@ public class AvionImpl implements IAvion {
         return (List<Avion>) avionDao.findAll();
     }
 
-    @Override
-    public List<Avion> findActiveByAerolineaId(Integer aerolineaId) {
-        return List.of();
-    }
-
     @Transactional
     @Override
     public void delete(Avion avion) {
         avionDao.delete(avion);
     }
 
-    @Override
-    public List<Avion> findActiveByAerolineaIdAndEstadoTrue(Integer aerolineaId) {
-        return List.of();
     }
-}
+

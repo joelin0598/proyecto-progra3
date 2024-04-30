@@ -19,6 +19,10 @@ public class Avion{
     @Column(name = "id")
     private Integer id;
 
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
+    private Aerolinea aerolineaId;
+
     @Column(name = "estado")
     private boolean estado;
 
@@ -51,9 +55,6 @@ public class Avion{
 
     @OneToMany(mappedBy = "avionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Vuelo> numeroVueloList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "avionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<AvionAerolinea> avionAerolineaList = new ArrayList<>();
 
     @OneToMany(mappedBy = "avionId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<AvionTripulacion> avionTripulacionList = new ArrayList<>();
