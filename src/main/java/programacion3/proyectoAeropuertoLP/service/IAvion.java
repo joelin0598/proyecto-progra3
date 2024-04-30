@@ -12,6 +12,8 @@ public interface IAvion {
     Avion update(Avion avion);
     Avion findById(Integer id);
     List<Avion> findAll();
+    boolean consultarEstadoAvionesPorAerolinea(Integer aerolineaId);
     void delete(Avion avion);
+
 }
 

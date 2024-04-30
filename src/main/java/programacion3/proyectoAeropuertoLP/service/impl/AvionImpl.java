@@ -42,6 +42,13 @@ public class AvionImpl implements IAvion {
 
     @Transactional
     @Override
+    public boolean consultarEstadoAvionesPorAerolinea(Integer aerolineaId) {
+        List<Avion> avionesActivos = avionDao.findByAerolineaIdAndEstadoIsTrue(aerolineaId);// Consultar aviones por aerolínea y estado activo
+        return !avionesActivos.isEmpty();// Si la lista de aviones activos no está vacía, retorna true, indicando que la aerolínea tiene aviones activos
+    }
+
+    @Transactional
+    @Override
     public void delete(Avion avion) {
         avionDao.delete(avion);
     }

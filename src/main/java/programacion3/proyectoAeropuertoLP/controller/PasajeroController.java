@@ -11,7 +11,7 @@ import programacion3.proyectoAeropuertoLP.model.entity.Pasajero;
 import programacion3.proyectoAeropuertoLP.service.IPasajero;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/pasajeros")
 @CrossOrigin(origins = "*")
 public class PasajeroController {
 
@@ -25,8 +25,8 @@ public class PasajeroController {
     public ResponseEntity<?> crearPasajeros(@Valid @RequestBody PasajeroDto pasajeroDto) {
         Pasajero pasajero = new Pasajero();
         pasajero= modelMapper.map(pasajeroDto, Pasajero.class);
-        /*
-        pasajero.setPasaporte(pasajeroDto.getPasaporte());
+
+        /*pasajero.setPasaporte(pasajeroDto.getPasaporte());
         pasajero.setNombres(pasajeroDto.getNombres());
         pasajero.setApellidos(pasajeroDto.getApellidos());
         pasajero.setFechaNacimiento(pasajeroDto.getFechaNacimiento());
@@ -37,6 +37,7 @@ public class PasajeroController {
         pasajero.setTelEmergencias(pasajeroDto.getTelEmergencias());
         pasajero.setDireccion(pasajeroDto.getDireccion());
         pasajero.setPassword(pasajeroDto.getPassword());*/
+
         Pasajero pasajeroResponse = pasajeroService.save(pasajero);
         return ResponseEntity.ok(pasajeroResponse);
     }

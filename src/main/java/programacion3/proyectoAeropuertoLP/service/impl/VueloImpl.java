@@ -24,10 +24,7 @@ public class VueloImpl implements IVuelo {
 
     @Transactional
     @Override
-    public Vuelo save(Vuelo vuelo) throws Exception{
-        // Validar que la aerolínea tenga aviones en estado "Activo"
-         aerolineaDao.findById(vuelo.getAerolineaId().getId()).orElseThrow(()-> new Exception("Aerolinea no encontrada"));
-
+    public Vuelo save(Vuelo vuelo){
         return vueloDao.save(vuelo);
     }
 
@@ -47,6 +44,12 @@ public class VueloImpl implements IVuelo {
     @Override
     public List<Vuelo> findAll() {
         return (List<Vuelo>) vueloDao.findAll();
+    }
+
+    @Transactional
+    @Override
+    public boolean validarAerolineaConAvionesActivos(Integer aerolineaId) {
+        return avionDao.consultarEstadoAvionesPorAerolinea(aerolineaId);
     }
 
     @Transactional

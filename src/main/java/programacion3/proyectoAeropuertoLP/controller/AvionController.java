@@ -16,10 +16,11 @@ public class AvionController {
 
     @Autowired
     private IAvion avionServie;
-
+    /*
     @GetMapping("/activos/{idAerolinea}")
     public ResponseEntity<List<AvionDto>> obtenerListaAviones(@PathVariable Integer idAerolinea) {
         List<AvionDto> aviones = avionServie.obtenerListaAviones(idAerolinea);
         return ResponseEntity.ok(aviones);
     }
+    */
 }
