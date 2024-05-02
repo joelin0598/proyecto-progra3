@@ -64,9 +64,6 @@ public class Usuario{
     @OneToMany(mappedBy = "usuarioId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Boleto> boletoList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "usuarioId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<UsuarioPuesto> usuarioPuestoList = new ArrayList<>();
-
     @OneToMany(mappedBy = "pilotoId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Tripulacion> pilotoList = new ArrayList<>();
 
