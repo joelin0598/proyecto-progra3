@@ -1,6 +1,4 @@
 package programacion3.proyectoAeropuertoLP.service.impl;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,13 +37,13 @@ public class AvionImpl implements IAvion {
     public List<Avion> findAll() {
         return (List<Avion>) avionDao.findAll();
     }
-
+    /*
     @Transactional
     @Override
-    public boolean consultarEstadoAvionesPorAerolinea(Integer aerolineaId) {
+    public  boolean consultarEstadoAvionesPorAerolinea(Integer aerolineaId) {
         List<Avion> avionesActivos = avionDao.findByAerolineaIdAndEstadoIsTrue(aerolineaId);// Consultar aviones por aerolínea y estado activo
         return !avionesActivos.isEmpty();// Si la lista de aviones activos no está vacía, retorna true, indicando que la aerolínea tiene aviones activos
-    }
+    }*/
 
     @Transactional
     @Override

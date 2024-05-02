@@ -2,7 +2,7 @@ package programacion3.proyectoAeropuertoLP.model.dto;
 
 import lombok.*;
 import programacion3.proyectoAeropuertoLP.model.entity.ClaseVuelo;
-import programacion3.proyectoAeropuertoLP.model.entity.Pasajero;
+import programacion3.proyectoAeropuertoLP.model.entity.Usuario;
 import programacion3.proyectoAeropuertoLP.model.entity.Vuelo;
 
 @Data
@@ -11,7 +11,7 @@ import programacion3.proyectoAeropuertoLP.model.entity.Vuelo;
  public class BoletoDto {
 
  private Integer id;
- private Pasajero pasajeroId;
+ private Usuario usuarioId;
  private Vuelo numeroVueloId;
  private ClaseVuelo claseVueloId;
  private String asientos;

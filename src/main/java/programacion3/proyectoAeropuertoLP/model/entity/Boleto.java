@@ -20,8 +20,8 @@ import lombok.*;
 
  @JsonIgnore
  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
- @JoinColumn(name = "pasajero_id",referencedColumnName = "id")
- private Pasajero pasajeroId;
+ @JoinColumn(name = "usuario_id",referencedColumnName = "id")
+ private Usuario usuarioId;
 
  @JsonIgnore
  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

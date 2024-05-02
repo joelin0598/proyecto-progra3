@@ -6,25 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import programacion3.proyectoAeropuertoLP.model.dto.PasajeroDto;
-import programacion3.proyectoAeropuertoLP.model.entity.Pasajero;
-import programacion3.proyectoAeropuertoLP.service.IPasajero;
+import programacion3.proyectoAeropuertoLP.model.dto.UsuarioDto;
+import programacion3.proyectoAeropuertoLP.model.entity.Usuario;
+import programacion3.proyectoAeropuertoLP.service.IUsuario;
 
 @RestController
 @RequestMapping("/api/pasajeros")
 @CrossOrigin(origins = "*")
-public class PasajeroController {
+public class UsuarioController {
 
     @Autowired
-    private IPasajero pasajeroService;
+    private IUsuario usuarioService;
 
     @Autowired
     private ModelMapper modelMapper ;
     @PostMapping("post/pasajeros")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> crearPasajeros(@Valid @RequestBody PasajeroDto pasajeroDto) {
-        Pasajero pasajero = new Pasajero();
-        pasajero= modelMapper.map(pasajeroDto, Pasajero.class);
+    public ResponseEntity<?> crearPasajeros(@Valid @RequestBody UsuarioDto usuarioDto) {
+        Usuario usuario = new Usuario();
+        usuario= modelMapper.map(usuarioDto, Usuario.class);
 
         /*pasajero.setPasaporte(pasajeroDto.getPasaporte());
         pasajero.setNombres(pasajeroDto.getNombres());
@@ -38,7 +38,7 @@ public class PasajeroController {
         pasajero.setDireccion(pasajeroDto.getDireccion());
         pasajero.setPassword(pasajeroDto.getPassword());*/
 
-        Pasajero pasajeroResponse = pasajeroService.save(pasajero);
-        return ResponseEntity.ok(pasajeroResponse);
+        Usuario usuarioResponse = usuarioService.save(usuario);
+        return ResponseEntity.ok(usuarioResponse);
     }
 }

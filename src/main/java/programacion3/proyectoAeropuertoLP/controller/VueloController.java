@@ -13,6 +13,7 @@ import programacion3.proyectoAeropuertoLP.service.*;
 @CrossOrigin(origins = "*")
 public class VueloController {
 
+    /*
     @Autowired
     private IVuelo vueloService;
 
@@ -26,4 +27,5 @@ public class VueloController {
         Vuelo nuevoVuelo = vueloService.save(vuelo);// Si la aerolínea tiene aviones con estado activo, proceder con la creación del vuelo
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoVuelo);
     }
+     */
 }

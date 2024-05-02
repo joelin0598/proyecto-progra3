@@ -1,7 +1,11 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -9,16 +13,15 @@ import java.sql.Timestamp;
 @ToString
 @Builder
 @Entity
-@Table(name ="estado_asignacion")
-public class EstadoAsignacion{
-
+@Table(name ="rol")
+public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "nombre_rol")
+    private String nombreRol;
 
     @Column(name = "fecha_creacion")
     private Timestamp fechaCreacion;
@@ -31,4 +34,7 @@ public class EstadoAsignacion{
 
     @Column(name = "modificado_por")
     private String modificadoPor;
+
+    @OneToMany(mappedBy = "rol_id",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Usuario> usuarioList = new ArrayList<>();
 }

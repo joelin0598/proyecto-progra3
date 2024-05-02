@@ -3,7 +3,7 @@ package programacion3.proyectoAeropuertoLP.model.dto;
 import lombok.*;
 import programacion3.proyectoAeropuertoLP.model.entity.Aeropuerto;
 import programacion3.proyectoAeropuertoLP.model.entity.Boleto;
-import programacion3.proyectoAeropuertoLP.model.entity.TripulacionVuelo;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,5 +24,4 @@ public class VueloDto {
     private float precioClaseEconomica;
     private float precioClaseEjecutiva;
     private List<Boleto> boletoList;
-    private List<TripulacionVuelo> tripulacionVueloList;
 }

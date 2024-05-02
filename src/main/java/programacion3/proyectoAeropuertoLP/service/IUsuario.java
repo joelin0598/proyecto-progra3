@@ -10,4 +10,5 @@ public interface IUsuario {
     Usuario findById(Integer id);
     List<Usuario> findAll();
     void delete(Usuario usuario);
+    boolean existsByPasaporte(String pasaporte);
 }

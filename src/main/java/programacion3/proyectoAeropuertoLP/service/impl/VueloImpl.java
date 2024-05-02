@@ -12,7 +12,7 @@ import programacion3.proyectoAeropuertoLP.service.IVuelo;
 import java.util.List;
 
 @Service
-public class VueloImpl implements IVuelo {
+public class        VueloImpl implements IVuelo {
     @Autowired
     private VueloDao vueloDao;
 
@@ -45,12 +45,14 @@ public class VueloImpl implements IVuelo {
     public List<Vuelo> findAll() {
         return (List<Vuelo>) vueloDao.findAll();
     }
-
+    /*
     @Transactional
     @Override
     public boolean validarAerolineaConAvionesActivos(Integer aerolineaId) {
         return avionDao.consultarEstadoAvionesPorAerolinea(aerolineaId);
     }
+
+     */
 
     @Transactional
     @Override

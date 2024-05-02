@@ -1,5 +1,6 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,11 +21,35 @@ public class Tripulacion {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "nombre")
-    private String nombre;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "piloto_id",referencedColumnName = "id")
+    private Usuario pilotoId;
 
-    @Column(name = "tipo_puesto")
-    private String tipoPuesto;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "copiloto_id",referencedColumnName = "id")
+    private Usuario copilotoId;
+
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "ingeniero_id",referencedColumnName = "id")
+    private Usuario ingenieroId;
+
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "tripulante1_id",referencedColumnName = "id")
+    private Usuario tripulante1Id;
+
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "tripulante2_id",referencedColumnName = "id")
+    private Usuario tripulante2Id;
+
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "tripulante3_id",referencedColumnName = "id")
+    private Usuario tripulante3Id;
 
     @Column(name = "fecha_creacion")
     private LocalDateTime fechaCreacion;
@@ -39,8 +64,6 @@ public class Tripulacion {
     private String modificadoPor;
 
     @OneToMany(mappedBy = "tripulacionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<TripulacionVuelo> tripulacionVueloList = new ArrayList<>();
+    private List<Avion> avionList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "tripulacionId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<AvionTripulacion> avionTripulacionList = new ArrayList<>();
 }

@@ -58,7 +58,4 @@ public class Vuelo {
 
     @OneToMany(mappedBy = "numeroVueloId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Boleto> boletoList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "numeroVueloId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<TripulacionVuelo> tripulacionVueloList = new ArrayList<>();
 }
