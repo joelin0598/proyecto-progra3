@@ -2,7 +2,6 @@ package programacion3.proyectoAeropuertoLP.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +13,22 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name ="avion")
-public class Avion implements Serializable {
+public class Avion{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
+    private Aerolinea aerolineaId;
+
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "tripulacion_id",referencedColumnName = "id")
+    private Tripulacion tripulacionId;
+
+    @Column(name = "estado")
+    private boolean estado;
 
     @Column(name = "modelo")
     private String modelo;
@@ -29,8 +39,8 @@ public class Avion implements Serializable {
     @Column(name = "anio")
     private Integer anio;
 
-    @Column(name = "capacidad_pasajeros")
-    private Integer capacidadPasajeros;
+    @Column(name = "max_asientos")
+    private Integer maxAsientos;
 
     @Column(name = "descripcion")
     private String descripcion;
@@ -50,6 +60,6 @@ public class Avion implements Serializable {
     @OneToMany(mappedBy = "avionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Vuelo> numeroVueloList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "avionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<AvionAerolinea> avionAerolineaList = new ArrayList<>();
+    @OneToMany(mappedBy = "avionId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<Asientos> asientosList = new ArrayList<>();
 }

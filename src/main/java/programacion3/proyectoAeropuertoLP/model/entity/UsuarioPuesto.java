@@ -1,10 +1,7 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
@@ -12,21 +9,19 @@ import java.io.Serializable;
 @ToString
 @Builder
 @Entity
-@Table(name ="usuario_aerolinea")
-public class UsuarioAerolinea{
+@Table(name ="usuario_puesto")
+public class UsuarioPuesto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "usuario_id",referencedColumnName = "id")
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuarioId;
 
-    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
-    private Aerolinea aerolineaId;
-
+    @JoinColumn(name = "puesto_id", referencedColumnName = "id")
+    private Puesto puestoId;
 }

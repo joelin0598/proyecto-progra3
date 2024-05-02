@@ -9,5 +9,6 @@ public interface IVuelo {
     Vuelo update(Vuelo vuelo);
     Vuelo findById(Integer id);
     List<Vuelo> findAll();
+    /*boolean validarAerolineaConAvionesActivos(Integer aerolineaId);*/
     void delete(Vuelo vuelo);
 }

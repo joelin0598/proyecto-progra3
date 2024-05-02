@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import programacion3.proyectoAeropuertoLP.model.entity.Aerolinea;
 
 public interface AerolineaDao extends JpaRepository<Aerolinea, Integer> {
-    
+    /*boolean validarAerolineaConAvionesActivos(Integer aerolineaId);*/
 }

@@ -13,6 +13,7 @@ import java.util.List;
 public class ClaseVueloImpl implements IClaseVuelo {
     @Autowired
     private ClaseVueloDao claseVueloDao;
+
     @Transactional
     @Override
     public ClaseVuelo save(ClaseVuelo claseVuelo) {
@@ -24,19 +25,22 @@ public class ClaseVueloImpl implements IClaseVuelo {
     public ClaseVuelo update(ClaseVuelo claseVuelo) {
         return claseVueloDao.save(claseVuelo);
     }
+
     @Transactional(readOnly = true)
     @Override
     public ClaseVuelo findById(Integer id) {
         return claseVueloDao.findById(id).orElse(null);
     }
-    @Transactional
-    @Override
-    public void delete(ClaseVuelo claseVuelo) {
-        claseVueloDao.delete(claseVuelo);
-    }
+
     @Transactional(readOnly = true)
     @Override
     public List<ClaseVuelo> findAll() {
         return (List<ClaseVuelo>) claseVueloDao.findAll();
+    }
+
+    @Transactional
+    @Override
+    public void delete(ClaseVuelo claseVuelo) {
+        claseVueloDao.delete(claseVuelo);
     }
 }

@@ -7,7 +7,8 @@ import java.util.List;
 public interface IUsuarioAerolinea {
 
     UsuarioAerolinea save(UsuarioAerolinea usuarioAerolinea);
+    UsuarioAerolinea update(UsuarioAerolinea usuarioAerolinea);
     UsuarioAerolinea findById(Integer id);
-    void delete(UsuarioAerolinea usuarioAerolinea);
     List<UsuarioAerolinea> findAll();
+    void delete(UsuarioAerolinea usuarioAerolinea);
 }

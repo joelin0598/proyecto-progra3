@@ -25,6 +25,7 @@ CREATE TABLE usuario_aerolinea (
 --CATALOGO DE AVIONES
 CREATE TABLE avion (
     id SERIAL PRIMARY KEY,
+    estado bool null,
     modelo VARCHAR(100),
     marca VARCHAR(100),
     anio INT,

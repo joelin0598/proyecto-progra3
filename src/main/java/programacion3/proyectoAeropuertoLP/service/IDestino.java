@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface IDestino {
     Destino save(Destino destino);
+    Destino update(Destino destino);
     Destino findById(Integer id);
-
-    void delete(Destino destino);
     List<Destino> findAll();
+    void delete(Destino destino);
 }

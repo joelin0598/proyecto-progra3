@@ -1,12 +1,9 @@
-
 package programacion3.proyectoAeropuertoLP.model.entity;
-
-        import jakarta.persistence.*;
-        import lombok.*;
-        import java.sql.Timestamp;
-        import java.io.Serializable;
-        import java.util.ArrayList;
-        import java.util.List;
+import jakarta.persistence.*;
+import lombok.*;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -15,7 +12,7 @@ package programacion3.proyectoAeropuertoLP.model.entity;
 @Builder
 @Entity
 @Table(name ="aerolinea")
-public class Aerolinea implements Serializable {
+public class Aerolinea{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -39,10 +36,6 @@ public class Aerolinea implements Serializable {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-
-    @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<AvionAerolinea> avionAerolineaList = new ArrayList<>();
-
     @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Vuelo> numeroVueloList = new ArrayList<>();
 
@@ -51,4 +44,7 @@ public class Aerolinea implements Serializable {
 
     @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<UsuarioAerolinea> usuarioAerolineaList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Avion> avionList = new ArrayList<>();
 }

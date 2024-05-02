@@ -41,6 +41,9 @@ public class Vuelo {
     @JoinColumn(name = "avion_id",referencedColumnName = "id")
     private Avion avionId;
 
+    @Column(name = "asientos_disponibles")
+    private Integer asientosDisponibles;
+
     @Column(name = "fecha_hora_salida")
     private LocalDate fechaHoraSalida;
 
@@ -55,7 +58,4 @@ public class Vuelo {
 
     @OneToMany(mappedBy = "numeroVueloId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Boleto> boletoList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "numeroVueloId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<TripulacionVuelo> tripulacionVueloList = new ArrayList<>();
 }

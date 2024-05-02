@@ -11,8 +11,10 @@ import java.util.List;
 
 @Service
 public class AeropuertoImpl implements IAeropuerto {
+
     @Autowired
     private AeropuertoDao aeropuertoDao;
+
     @Transactional
     @Override
     public Aeropuerto save(Aeropuerto aeropuerto) {
@@ -30,6 +32,7 @@ public class AeropuertoImpl implements IAeropuerto {
     public Aeropuerto findById(Integer id) {
         return  aeropuertoDao.findById(id).orElse(null);
     }
+
     @Transactional(readOnly = true)
     @Override
     public List<Aeropuerto> findAll() {
