@@ -22,6 +22,9 @@ public class Usuario{
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "tipo_usuario_id")
+    private int tipoUsuarioId;
+
     @ManyToOne(cascade =CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "rol_id",referencedColumnName = "id")
     private Rol rol_id;
