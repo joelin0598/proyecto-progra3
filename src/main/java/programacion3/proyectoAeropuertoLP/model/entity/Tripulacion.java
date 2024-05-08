@@ -30,11 +30,6 @@ public class Tripulacion {
     @JoinColumn(name = "usuario_id",referencedColumnName = "id")
     private Usuario usuarioId;
 
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "puesto_id",referencedColumnName = "id")
-    private Puesto puestoId;
-
     @Column(name = "fecha_creacion")
     private LocalDateTime fechaCreacion;
 
