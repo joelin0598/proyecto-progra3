@@ -24,6 +24,6 @@ public class Puesto {
     private String puestoNombre;
 
     @OneToMany(mappedBy = "puestoId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Tripulacion> usuarioPuestoList = new ArrayList<>();
+    private List<Tripulacion> tripulacionList = new ArrayList<>();
 
 }
