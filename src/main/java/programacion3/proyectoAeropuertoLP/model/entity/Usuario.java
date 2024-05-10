@@ -65,25 +65,7 @@ public class Usuario{
     private List<Boleto> boletoList = new ArrayList<>();
 
     @OneToMany(mappedBy = "usuarioId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<UsuarioPuesto> usuarioPuestoList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "pilotoId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Tripulacion> pilotoList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "copilotoId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Tripulacion> copilotoList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "ingenieroId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Tripulacion> ingenieroList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "tripulante1Id",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Tripulacion> tripulante1List = new ArrayList<>();
-
-    @OneToMany(mappedBy = "tripulante2Id",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Tripulacion> tripulante2List = new ArrayList<>();
-
-    @OneToMany(mappedBy = "tripulante3Id",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Tripulacion> tripulante3List = new ArrayList<>();
+    private List<Tripulacion> tripulacionList = new ArrayList<>();
 
     @OneToMany(mappedBy = "usuarioId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<UsuarioAerolinea> usuarioAerolineaList = new ArrayList<>();

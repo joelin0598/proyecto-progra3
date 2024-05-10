@@ -23,33 +23,13 @@ public class Tripulacion {
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "piloto_id",referencedColumnName = "id")
-    private Usuario pilotoId;
+    @JoinColumn(name = "puesto_id", referencedColumnName = "id")
+    private Puesto puestoId;
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "copiloto_id",referencedColumnName = "id")
-    private Usuario copilotoId;
-
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "ingeniero_id",referencedColumnName = "id")
-    private Usuario ingenieroId;
-
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "tripulante1_id",referencedColumnName = "id")
-    private Usuario tripulante1Id;
-
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "tripulante2_id",referencedColumnName = "id")
-    private Usuario tripulante2Id;
-
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "tripulante3_id",referencedColumnName = "id")
-    private Usuario tripulante3Id;
+    @JoinColumn(name = "usuario_id",referencedColumnName = "id")
+    private Usuario usuarioId;
 
     @Column(name = "fecha_creacion")
     private LocalDateTime fechaCreacion;
