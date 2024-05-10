@@ -10,6 +10,8 @@ import programacion3.proyectoAeropuertoLP.model.dto.UsuarioDto;
 import programacion3.proyectoAeropuertoLP.model.entity.Usuario;
 import programacion3.proyectoAeropuertoLP.service.IUsuario;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/pasajeros")
 @CrossOrigin(origins = "*")
@@ -41,4 +43,20 @@ public class UsuarioController {
         Usuario usuarioResponse = usuarioService.save(usuario);
         return ResponseEntity.ok(usuarioResponse);
     }
+
+    @GetMapping("get/pasajeros{id}")
+    public ResponseEntity<Usuario> consultarPasajeroId(@PathVariable Integer id) {
+        Usuario usuario = usuarioService.findById(id);
+        return ResponseEntity.ok(usuario);
+    }
+
+    @GetMapping("getAll/pasajeros")
+    public ResponseEntity<List<Usuario>> consultarPasajeros() {
+        List<Usuario> usuarios = usuarioService.findAll();
+        return ResponseEntity.ok(usuarios);
+    }
+
+
 }
+
+

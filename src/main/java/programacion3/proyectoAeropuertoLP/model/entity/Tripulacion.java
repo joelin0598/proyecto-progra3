@@ -21,6 +21,7 @@ public class Tripulacion {
     @Column(name = "id")
     private Integer id;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "puesto_id", referencedColumnName = "id")
     private Puesto puestoId;
