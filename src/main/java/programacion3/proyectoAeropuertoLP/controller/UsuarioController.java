@@ -55,8 +55,6 @@ public class UsuarioController {
         List<Usuario> usuarios = usuarioService.findAll();
         return ResponseEntity.ok(usuarios);
     }
-
-
 }
 
 
