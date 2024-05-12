@@ -13,15 +13,13 @@ import java.util.List;
 @Builder
 public class VueloDto {
 
-    private Integer id;
     private int aerolineaId;
-    private Aeropuerto aeropuertoSalidaId;
-    private Aeropuerto aeropuertoLlegadaId;
+    //private int aeropuertoSalidaId;
+    //private int aeropuertoLlegadaId;
     private int avionId;
-    private Integer asientosDisponibles;
-    private LocalDate fechaHoraSalida;
-    private LocalDateTime fechaHoraLlegada;
-    private float precioClaseEconomica;
-    private float precioClaseEjecutiva;
-    private List<Boleto> boletoList;
+    //private Integer asientosDisponibles;
+    //private LocalDate fechaHoraSalida;
+    //private LocalDateTime fechaHoraLlegada;
+    //private float precioClaseEconomica;
+    //private float precioClaseEjecutiva;
 }
