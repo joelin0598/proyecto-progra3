@@ -35,6 +35,6 @@ public class Rol {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-    @OneToMany(mappedBy = "rol_id",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Usuario> usuarioList = new ArrayList<>();
+    @OneToMany(mappedBy = "rolId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Users> usersList = new ArrayList<>();
 }

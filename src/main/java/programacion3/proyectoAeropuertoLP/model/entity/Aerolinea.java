@@ -39,12 +39,18 @@ public class Aerolinea{
     @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Vuelo> numeroVueloList = new ArrayList<>();
 
+    //ok
     @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Destino> destinosList = new ArrayList<>();
 
     @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<UsuarioAerolinea> usuarioAerolineaList = new ArrayList<>();
 
+    //ok
     @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Avion> avionList = new ArrayList<>();
+
+    //ok
+    @OneToMany(mappedBy = "aerolineaId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Tripulacion> tripulacionList = new ArrayList<>();
 }

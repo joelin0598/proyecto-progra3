@@ -23,13 +23,8 @@ public class Tripulacion {
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "puesto_id", referencedColumnName = "id")
-    private Puesto puestoId;
-
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "usuario_id",referencedColumnName = "id")
-    private Usuario usuarioId;
+    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
+    private Aerolinea aerolineaId;
 
     @Column(name = "fecha_creacion")
     private LocalDateTime fechaCreacion;
@@ -45,5 +40,8 @@ public class Tripulacion {
 
     @OneToMany(mappedBy = "tripulacionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Avion> avionList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "tripulacionId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<Empleado> empleadoList = new ArrayList<>();
 
 }

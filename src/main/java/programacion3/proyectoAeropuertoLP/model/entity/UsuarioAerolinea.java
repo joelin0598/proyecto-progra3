@@ -21,11 +21,6 @@ public class UsuarioAerolinea{
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "usuario_id",referencedColumnName = "id")
-    private Usuario usuarioId;
-
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "aerolinea_id", referencedColumnName = "id")
     private Aerolinea aerolineaId;
 }
