@@ -1,5 +1,6 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.sql.Timestamp;
@@ -19,10 +20,12 @@ public class Avion{
     @Column(name = "id")
     private Integer id;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
     private Aerolinea aerolineaId;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "tripulacion_id",referencedColumnName = "id")
     private Tripulacion tripulacionId;

@@ -21,7 +21,4 @@ public class AeropuertoDto{
     private LocalDateTime fechaCreacion;
     private LocalDateTime fechaModificacion;
     private String creadoPor;
-    private String modificadoPor;
-    private List<Vuelo> vueloSalidaList;
-    private List<Vuelo> vueloLlegadaList;
 }

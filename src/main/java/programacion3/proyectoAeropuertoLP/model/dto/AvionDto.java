@@ -18,10 +18,4 @@ public class AvionDto{
     private String marca;
     private Integer anio;
     private Integer maxAsientos;
-    private String descripcion;
-    private Timestamp fechaCreacion;
-    private Timestamp fechaModificacion;
-    private String creadoPor;
-    private String modificadoPor;
-    private List<Vuelo> vuelosAerolineaList;
 }

@@ -24,5 +24,4 @@ public class TripulacionDto {
     private Usuario tripulante1Id;
     private Usuario tripulante2Id;
     private Usuario tripulante3Id;
-    private List<Avion> avionList;
 }

@@ -52,4 +52,26 @@ public class Aeropuerto {
 
     @OneToMany(mappedBy = "aeropuertoId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Destino> destinoList = new ArrayList<>();
+
+    @PrePersist
+    public void prePersist() {
+        this.fechaCreacion = LocalDateTime.now();
+        this.fechaModificacion = LocalDateTime.now();
+        asignarValorPorDefecto();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.fechaModificacion = LocalDateTime.now();
+        asignarValorPorDefecto();
+    }
+
+    private void asignarValorPorDefecto() {
+        if (this.creadoPor == null || this.creadoPor.isEmpty()) {
+            this.creadoPor = "Sistema";
+        }
+        if (this.modificadoPor == null || this.modificadoPor.isEmpty()) {
+            this.modificadoPor = "Sistema";
+        }
+    }
 }

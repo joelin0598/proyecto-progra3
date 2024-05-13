@@ -17,5 +17,4 @@ public class ClaseVueloDto {
     private LocalDateTime fechaModificacion;
     private String creadoPor;
     private String modificadoPor;
-    private List<Boleto> boletoList;
 }

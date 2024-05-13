@@ -1,6 +1,7 @@
 
 package programacion3.proyectoAeropuertoLP.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -22,6 +23,7 @@ public class Usuario{
     @Column(name = "id")
     private Integer id;
 
+    @JsonIgnore
     @ManyToOne(cascade =CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "rol_id",referencedColumnName = "id")
     private Rol rol_id;

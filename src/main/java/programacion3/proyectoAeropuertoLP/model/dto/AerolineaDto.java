@@ -21,7 +21,5 @@ public class AerolineaDto{
     private Timestamp fechaModificacion;
     private String creadoPor;
     private String modificadoPor;
-    private List<Vuelo> aerolineasList;
-    private List<Destino> destinosList;
-    private List<UsuarioAerolinea> usuarioAerolineasList;
+
 }
