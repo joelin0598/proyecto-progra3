@@ -14,5 +14,4 @@ public class AsientosDto {
     private int fila;
     private int columna;
     private boolean ocupado;
-    private List<Boleto> boletoList;
 }

@@ -22,7 +22,7 @@ public class UsuarioController {
 
     @Autowired
     private ModelMapper modelMapper ;
-    @PostMapping("post/pasajeros")
+    @PostMapping("post")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> crearPasajeros(@Valid @RequestBody UsuarioDto usuarioDto) {
         Usuario usuario = new Usuario();
@@ -40,8 +40,8 @@ public class UsuarioController {
         pasajero.setDireccion(pasajeroDto.getDireccion());
         pasajero.setPassword(pasajeroDto.getPassword());*/
 
-        Usuario usuarioResponse = usuarioService.save(usuario);
-        return ResponseEntity.ok(usuarioResponse);
+        Usuario nuevoUsuario = usuarioService.save(usuario);
+        return ResponseEntity.ok(nuevoUsuario);
     }
 
     @GetMapping("get/pasajeros{id}")
@@ -50,7 +50,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuario);
     }
 
-    @GetMapping("getAll/pasajeros")
+    @GetMapping("getAll")
     public ResponseEntity<List<Usuario>> consultarPasajeros() {
         List<Usuario> usuarios = usuarioService.findAll();
         return ResponseEntity.ok(usuarios);

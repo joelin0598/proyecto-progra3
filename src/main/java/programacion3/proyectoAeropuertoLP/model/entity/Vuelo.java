@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +22,7 @@ public class Vuelo {
     @Column(name = "id")
     private Integer id;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
     private Aerolinea aerolineaId;
@@ -37,6 +37,7 @@ public class Vuelo {
     @JoinColumn(name = "aeropuerto_llegada_id",referencedColumnName = "id")
     private Aeropuerto aeropuertoLlegadaId;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "avion_id",referencedColumnName = "id")
     private Avion avionId;
@@ -45,7 +46,7 @@ public class Vuelo {
     private Integer asientosDisponibles;
 
     @Column(name = "fecha_hora_salida")
-    private LocalDate fechaHoraSalida;
+    private LocalDateTime fechaHoraSalida;
 
     @Column(name = "fecha_hora_llegada")
     private LocalDateTime fechaHoraLlegada;
@@ -56,6 +57,40 @@ public class Vuelo {
     @Column(name = "precio_clase_ejecutiva")
     private float precioClaseEjecutiva;
 
+    @Column(name = "fecha_creacion")
+    private LocalDateTime fechaCreacion;
+
+    @Column(name = "fecha_modificacion")
+    private LocalDateTime fechaModificacion;
+
+    @Column(name = "creado_por")
+    private String creadoPor;
+
+    @Column(name = "modificado_por")
+    private String modificadoPor;
+
     @OneToMany(mappedBy = "numeroVueloId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Boleto> boletoList = new ArrayList<>();
+
+    @PrePersist
+    public void prePersist() {
+        this.fechaCreacion = LocalDateTime.now();
+        this.fechaModificacion = LocalDateTime.now();
+        asignarValorPorDefecto();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.fechaModificacion = LocalDateTime.now();
+        asignarValorPorDefecto();
+    }
+
+    private void asignarValorPorDefecto() {
+        if (this.creadoPor == null || this.creadoPor.isEmpty()) {
+            this.creadoPor = "Sistema";
+        }
+        if (this.modificadoPor == null || this.modificadoPor.isEmpty()) {
+            this.modificadoPor = "Sistema";
+        }
+    }
 }

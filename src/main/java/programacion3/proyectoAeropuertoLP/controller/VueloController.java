@@ -1,6 +1,7 @@
 package programacion3.proyectoAeropuertoLP.controller;
 
 import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,8 @@ import programacion3.proyectoAeropuertoLP.model.entity.Avion;
 import programacion3.proyectoAeropuertoLP.model.entity.Vuelo;
 import programacion3.proyectoAeropuertoLP.service.*;
 
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -27,44 +30,72 @@ public class VueloController {
     @Autowired
     private IVuelo vueloService;
 
-    @PostMapping("post/vuelos")
-    public ResponseEntity<?> crearVuelo(@Valid @RequestBody VueloDto vueloDto){//Pendiente configurar DTO
-        Aerolinea aerolineaId = aerolineaService.findById(vueloDto.getAerolineaId());
-        List<Avion> avionesActivos = avionService.findByAerolineaId(aerolineaId)
+    @Autowired
+    private IAeropuerto aeropuertoService;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+
+    @GetMapping("/{aerolineaId}/avionesActivos")
+    public ResponseEntity<List<Avion>> listarAvionesActivos(@PathVariable Integer aerolineaId) {
+        Aerolinea aerolinea = aerolineaService.findById(aerolineaId);
+        List<Avion> avionesActivos = avionService.findByAerolineaId(aerolinea)
                 .stream()
-                .filter(u->u.isEstado()==true)
-                .toList();// Verificar si la aerolínea tiene aviones con estado activo
-        if(avionesActivos.isEmpty()){
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body("La aerolínea no tiene aviones con estado activo");
+                .filter(Avion::isEstado)
+                .toList();
+
+        if (avionesActivos.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Collections.emptyList());
         } else {
+            return ResponseEntity.ok(avionesActivos);
+        }
+    }
 
-
+    @PostMapping("post/fly")
+    public ResponseEntity<?> crearVuelo(@Valid @RequestBody VueloDto vueloDto){
         Vuelo vuelo = new Vuelo();
+
+        LocalDateTime fechaActual = LocalDateTime.now();
+
+        if (vueloDto.getFechaHoraSalida().isEqual(vueloDto.getFechaHoraLlegada()) ||
+                vueloDto.getFechaHoraSalida().isBefore(fechaActual) ||
+                vueloDto.getFechaHoraLlegada().isBefore(fechaActual)) {
+            return ResponseEntity.badRequest().body("Las fechas de salida y llegada deben ser posteriores a la fecha actual");
+        }
+
         vuelo.setAerolineaId(aerolineaService.findById(vueloDto.getAerolineaId()));
         vuelo.setAvionId(avionService.findById(vueloDto.getAvionId()));
-        vueloService.save(vuelo);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Vuelo creado con éxito");
-        //return ResponseEntity.ok(vueloResponse);
-            //Vuelo nuevoVuelo = vueloService.save(vuelo);// Si la aerolínea tiene aviones con estado activo, proceder con la creación del vuelo
-        }
-    }
+        vuelo.setAeropuertoSalidaId(aeropuertoService.findById(vueloDto.getAeropuertoSalidaId()));
+        vuelo.setAeropuertoLlegadaId(aeropuertoService.findById(vueloDto.getAeropuertoLlegadaId()));
+        vuelo.setAsientosDisponibles(vueloDto.getAsientosDisponibles());
+        vuelo.setFechaHoraSalida(vueloDto.getFechaHoraSalida());
+        vuelo.setFechaHoraLlegada(vueloDto.getFechaHoraLlegada());
+        vuelo.setPrecioClaseEconomica(vueloDto.getPrecioClaseEconomica());
+        vuelo.setPrecioClaseEjecutiva(vueloDto.getPrecioClaseEjecutiva());
 
-
-    /*
-    @Autowired
-    private IVuelo vueloService;
-
-    @PostMapping("post/vuelos")
-    public ResponseEntity<?> crearVuelo(@Valid @RequestBody Vuelo vuelo){//Pendiente configurar DTO
-        Integer aerolineaId = vuelo.getAerolineaId().getId();
-        boolean aerolineaConAvionesActivos = vueloService.validarAerolineaConAvionesActivos(aerolineaId);// Verificar si la aerolínea tiene aviones con estado activo
-        if(!aerolineaConAvionesActivos){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("La aerolínea no tiene aviones con estado activo");
-        }
-        Vuelo nuevoVuelo = vueloService.save(vuelo);// Si la aerolínea tiene aviones con estado activo, proceder con la creación del vuelo
+        Vuelo nuevoVuelo = vueloService.save(vuelo);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoVuelo);
     }
-     */
+
+    @GetMapping("get/fly/{id}")
+    public ResponseEntity<?> consultarPorId(@PathVariable Integer id) {
+        VueloDto vueloDto = vueloService.findById(id);
+        if (vueloDto != null) {
+            return ResponseEntity.ok(vueloDto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("get/flyAll")
+    public ResponseEntity<List<VueloDto>> consultarTodos() {
+        List<VueloDto> vuelos = vueloService.findAll();
+        if (!vuelos.isEmpty()) {
+            return ResponseEntity.ok(vuelos);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
 }
