@@ -18,10 +18,4 @@ import java.util.List;
 public class TripulacionDto {
 
     private Integer id;
-    private Usuario pilotoId;
-    private Usuario copilotoId;
-    private Usuario ingenieroId;
-    private Usuario tripulante1Id;
-    private Usuario tripulante2Id;
-    private Usuario tripulante3Id;
 }
