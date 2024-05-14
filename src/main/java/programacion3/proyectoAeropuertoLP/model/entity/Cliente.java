@@ -16,8 +16,8 @@ import java.util.List;
 @ToString
 @Builder
 @Entity
-@Table(name ="usuario")
-public class Usuario{
+@Table(name ="cliente")
+public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -63,7 +63,7 @@ public class Usuario{
     @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+=]).*$", message = "El formato de la contraseña no es válido")
     private String password;
 
-    @OneToMany(mappedBy = "usuarioId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "clienteId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Boleto> boletoList = new ArrayList<>();
 
 }

@@ -42,6 +42,6 @@ public class Tripulacion {
     private List<Avion> avionList = new ArrayList<>();
 
     @OneToMany(mappedBy = "tripulacionId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<Empleado> empleadoList = new ArrayList<>();
+    private List<Empleados> empleadosList = new ArrayList<>();
 
 }

@@ -56,10 +56,10 @@ public class Users {
     private String modificadoPor;
 
     @OneToMany(mappedBy = "usersId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Usuario> usuarioList = new ArrayList<>();
+    private List<Cliente> clienteList = new ArrayList<>();
 
     @OneToMany(mappedBy = "usersId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Empleado> empleadoList = new ArrayList<>();
+    private List<Empleados> empleadosList = new ArrayList<>();
 
     @PrePersist
     public void prePersist() {

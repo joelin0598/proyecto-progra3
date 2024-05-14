@@ -22,8 +22,8 @@ import java.time.LocalDateTime;
 
  @JsonIgnore
  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
- @JoinColumn(name = "usuario_id",referencedColumnName = "id")
- private Usuario usuarioId;
+ @JoinColumn(name = "cliente_id",referencedColumnName = "id")
+ private Cliente clienteId;
 
  @JsonIgnore
  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

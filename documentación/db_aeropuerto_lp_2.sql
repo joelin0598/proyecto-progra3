@@ -1,4 +1,4 @@
-CREATE TABLE usuario (
+CREATE TABLE cliente (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(100),
     tipo VARCHAR(50) -- AdministradorAerolinea, AdministradorAbordaje
@@ -18,7 +18,7 @@ CREATE TABLE aerolinea (
 --ENTIDAD USUARIO*AEROLINEAS
 CREATE TABLE usuario_aerolinea (
 	id SERIAL PRIMARY KEY,
-    usuario_id INT REFERENCES usuario(id),
+    usuario_id INT REFERENCES cliente(id),
     aerolinea_id INT REFERENCES aerolinea(id)
 );
 

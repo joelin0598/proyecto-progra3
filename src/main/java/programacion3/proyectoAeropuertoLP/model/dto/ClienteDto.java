@@ -8,7 +8,7 @@ import lombok.ToString;
 @Data
 @ToString
 @Builder
-public class UsuarioDto{
+public class ClienteDto {
 
     @NotBlank
     @NotEmpty
