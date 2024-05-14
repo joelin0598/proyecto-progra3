@@ -32,16 +32,8 @@ public class Users {
     private String email;
 
     @Size(max = 255)
-    @Column(name = "email_verifiqued_at")
-    private String emailVerifiquedAt;
-
-    @Size(max = 255)
     @Column(name = "password")
     private String password;
-
-    @Size(max = 255)
-    @Column(name = "remembeer_token")
-    private String remembeerToken;
 
     @Column(name = "fecha_creacion")
     private LocalDateTime fechaCreacion;
