@@ -1,18 +1,18 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Builder
 @Entity
 @Table(name ="aerolinea")
-public class Aerolinea{
+public class Aerolinea extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -23,18 +23,6 @@ public class Aerolinea{
 
     @Column(name = "descripcion")
     private String descripcion;
-
-    @Column(name = "fecha_creacion")
-    private Timestamp fechaCreacion;
-
-    @Column(name = "fecha_modificacion")
-    private Timestamp fechaModificacion;
-
-    @Column(name = "creado_por")
-    private String creadoPor;
-
-    @Column(name = "modificado_por")
-    private String modificadoPor;
 
     @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Vuelo> numeroVueloList = new ArrayList<>();

@@ -1,16 +1,16 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
-import java.sql.Timestamp;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Builder
 @Entity
 @Table(name ="estado_asignacion")
-public class EstadoAsignacion{
+public class EstadoAsignacion extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,15 +20,5 @@ public class EstadoAsignacion{
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "fecha_creacion")
-    private Timestamp fechaCreacion;
 
-    @Column(name = "fecha_modificacion")
-    private Timestamp fechaModificacion;
-
-    @Column(name = "creado_por")
-    private String creadoPor;
-
-    @Column(name = "modificado_por")
-    private String modificadoPor;
 }

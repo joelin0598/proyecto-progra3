@@ -16,7 +16,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name ="asientos")
-public class Asientos{
+public class Asientos extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -35,18 +35,6 @@ public class Asientos{
 
     @Column(name = "ocupado")
     private boolean ocupado;
-
-    @Column(name = "fecha_creacion")
-    private LocalDateTime fechaCreacion;
-
-    @Column(name = "fecha_modificacion")
-    private LocalDateTime fechaModificacion;
-
-    @Column(name = "creado_por")
-    private String creadoPor;
-
-    @Column(name = "modificado_por")
-    private String modificadoPor;
 
     @OneToMany(mappedBy = "asientoId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Boleto> boletoList = new ArrayList<>();

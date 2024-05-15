@@ -4,18 +4,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Builder
 @Entity
 @Table(name = "empleados")
-public class Empleados {
+public class Empleados extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -24,7 +23,7 @@ public class Empleados {
     @JsonIgnore
     @ManyToOne(cascade =CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "users_id",referencedColumnName = "id")
-    private Users usersId;
+    private UserEntity usersId;
 
     @JsonIgnore
     @ManyToOne(cascade =CascadeType.ALL, fetch = FetchType.EAGER)
@@ -68,42 +67,6 @@ public class Empleados {
     @Column(name = "direccion", length = 100)
     private String direccion;
 
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "fecha_creacion")
-    private LocalDateTime fechaCreacion;
 
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "fecha_modificacion")
-    private LocalDateTime fechaModificacion;
-
-    @Size(max = 100)
-    @Column(name = "creado_por", length = 100)
-    private String creadoPor;
-
-    @Size(max = 100)
-    @Column(name = "modificado_por", length = 100)
-    private String modificadoPor;
-
-    @PrePersist
-    public void prePersist() {
-        this.fechaCreacion = LocalDateTime.now();
-        this.fechaModificacion = LocalDateTime.now();
-        asignarValorPorDefecto();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.fechaModificacion = LocalDateTime.now();
-        asignarValorPorDefecto();
-    }
-
-    private void asignarValorPorDefecto() {
-        if (this.creadoPor == null || this.creadoPor.isEmpty()) {
-            this.creadoPor = "Sistema";
-        }
-        if (this.modificadoPor == null || this.modificadoPor.isEmpty()) {
-            this.modificadoPor = "Sistema";
-        }
-    }
 
 }

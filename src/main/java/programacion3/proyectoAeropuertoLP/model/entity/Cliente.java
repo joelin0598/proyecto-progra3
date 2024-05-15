@@ -26,7 +26,7 @@ public class Cliente {
     @JsonIgnore
     @ManyToOne(cascade =CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "users_id",referencedColumnName = "id")
-    private Users usersId;
+    private UserEntity usersId;
 
     @Column(name = "pasaporte", unique = true)
     private String pasaporte;

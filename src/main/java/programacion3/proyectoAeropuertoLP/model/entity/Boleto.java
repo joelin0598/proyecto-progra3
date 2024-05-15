@@ -6,14 +6,15 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Builder
 @Entity
 @Table
- public class Boleto {
+ public class Boleto extends BaseEntity{
 
  @Id
  @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,16 +43,4 @@ import java.time.LocalDateTime;
 
  @Column(name = "cantidad_maletas")
  private int cantidadMaletas;
-
- @Column(name = "fecha_creacion")
- private LocalDateTime fechaCreacion;
-
- @Column(name = "fecha_modificacion")
- private LocalDateTime fechaModificacion;
-
- @Column(name = "creado_por")
- private String creadoPor;
-
- @Column(name = "modificado_por")
- private String modificadoPor;
 }

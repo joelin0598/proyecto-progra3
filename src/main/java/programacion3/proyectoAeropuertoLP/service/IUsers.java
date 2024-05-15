@@ -1,14 +1,13 @@
 package programacion3.proyectoAeropuertoLP.service;
 
-import org.apache.catalina.User;
-import programacion3.proyectoAeropuertoLP.model.entity.Users;
+import programacion3.proyectoAeropuertoLP.model.entity.UserEntity;
 
 import java.util.List;
 
 public interface IUsers {
-    Users save(Users user);
-    Users update(Users user);
-    Users findById(Integer id);
-    List<Users> findAll();
-    void delete(Users user);
+    UserEntity save(UserEntity user);
+    UserEntity update(UserEntity user);
+    UserEntity findById(Integer id);
+    List<UserEntity> findAll();
+    void delete(UserEntity user);
 }
