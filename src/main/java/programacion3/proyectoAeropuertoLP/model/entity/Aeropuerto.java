@@ -1,5 +1,6 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -44,12 +45,15 @@ public class Aeropuerto {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "aeropuertoSalidaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Vuelo> numeroVueloSalidaList = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "aeropuertoLlegadaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Vuelo> numeroVueloLlegadaList = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "aeropuertoId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Destino> destinoList = new ArrayList<>();
 

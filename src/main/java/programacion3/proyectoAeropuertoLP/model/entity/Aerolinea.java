@@ -1,4 +1,5 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.sql.Timestamp;
@@ -36,18 +37,19 @@ public class Aerolinea{
     @Column(name = "modificado_por")
     private String modificadoPor;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Vuelo> numeroVueloList = new ArrayList<>();
 
-    //ok
+    @JsonIgnore
     @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Destino> destinosList = new ArrayList<>();
 
-    //ok
+    @JsonIgnore
     @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Avion> avionList = new ArrayList<>();
 
-    //ok
+    @JsonIgnore
     @OneToMany(mappedBy = "aerolineaId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Tripulacion> tripulacionList = new ArrayList<>();
 }

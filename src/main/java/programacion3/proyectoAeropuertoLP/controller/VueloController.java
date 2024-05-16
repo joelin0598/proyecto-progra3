@@ -81,17 +81,17 @@ public class VueloController {
 
     @GetMapping("get/fly/{id}")
     public ResponseEntity<?> consultarPorId(@PathVariable Integer id) {
-        VueloDto vueloDto = vueloService.findById(id);
-        if (vueloDto != null) {
-            return ResponseEntity.ok(vueloDto);
+        Vuelo vuelo = vueloService.findById(id);
+        if (vuelo != null) {
+            return ResponseEntity.ok(vuelo);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @GetMapping("get/flyAll")
-    public ResponseEntity<List<VueloDto>> consultarTodos() {
-        List<VueloDto> vuelos = vueloService.findAll();
+    public ResponseEntity<List<Vuelo>> consultarTodos() {
+        List<Vuelo> vuelos = vueloService.findAll();
         if (!vuelos.isEmpty()) {
             return ResponseEntity.ok(vuelos);
         } else {

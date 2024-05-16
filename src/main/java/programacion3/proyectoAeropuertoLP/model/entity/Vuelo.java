@@ -22,22 +22,18 @@ public class Vuelo {
     @Column(name = "id")
     private Integer id;
 
-    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
     private Aerolinea aerolineaId;
 
-    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "aeropuerto_salida_id",referencedColumnName = "id")
     private Aeropuerto aeropuertoSalidaId;
 
-    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "aeropuerto_llegada_id",referencedColumnName = "id")
     private Aeropuerto aeropuertoLlegadaId;
 
-    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "avion_id",referencedColumnName = "id")
     private Avion avionId;
@@ -69,6 +65,7 @@ public class Vuelo {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "numeroVueloId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Boleto> boletoList = new ArrayList<>();
 

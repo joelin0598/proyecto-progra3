@@ -8,12 +8,14 @@ import java.util.List;
 public interface IVuelo {
 
     Vuelo save(Vuelo vuelo);
-
     Vuelo update(Vuelo vuelo);
-
-    VueloDto findById(Integer id);
-
-    List<VueloDto> findAll();
-
+    Vuelo findById(Integer id);
+    List<Vuelo> findAll();
     void delete(Vuelo vuelo);
+
+    /*VueloDto findById(Integer id);*/
+
+    /*List<VueloDto> findAll();*/
+
+
 }

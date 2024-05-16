@@ -42,31 +42,38 @@ public class VueloImpl implements IVuelo {
 
     @Transactional(readOnly = true)
     @Override
-    public VueloDto findById(Integer id) {
-        Vuelo vuelo = vueloDao.findById(id).orElse(null);
-        return modelMapper.map(vuelo, VueloDto.class);
+    public Vuelo findById(Integer id) {
+        return vueloDao.findById(id).orElse(null);
     }
 
     @Transactional(readOnly = true)
+    @Override
+    public List<Vuelo> findAll() {
+        return (List<Vuelo>)vueloDao.findAll();
+    }
+
+    @Transactional
+    @Override
+    public void delete(Vuelo vuelo) {
+        vueloDao.delete(vuelo);
+    }
+
+
+    /*@Transactional(readOnly = true)
+    @Override
+    public VueloDto findById(Integer id) {
+        Vuelo vuelo = vueloDao.findById(id).orElse(null);
+        return modelMapper.map(vuelo, VueloDto.class);}*/
+
+    /*@Transactional(readOnly = true)
     @Override
     public List<VueloDto> findAll() {
         List<Vuelo> vuelos = vueloDao.findAll();
         return vuelos.stream()
                 .map(vuelo -> modelMapper.map(vuelo, VueloDto.class))
-                .collect(Collectors.toList());
-    }
-    /*
-    @Transactional
+                .collect(Collectors.toList());}*/
+    /*@Transactional
     @Override
     public boolean validarAerolineaConAvionesActivos(Integer aerolineaId) {
-        return avionDao.consultarEstadoAvionesPorAerolinea(aerolineaId);
-    }
-
-     */
-
-    @Transactional
-    @Override
-    public void delete(Vuelo vuelo) {
-       vueloDao.delete(vuelo);
-    }
+        return avionDao.consultarEstadoAvionesPorAerolinea(aerolineaId);}*/
 }
