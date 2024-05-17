@@ -4,13 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import programacion3.proyectoAeropuertoLP.model.dao.AsientosDao;
+import programacion3.proyectoAeropuertoLP.model.entity.Aerolinea;
 import programacion3.proyectoAeropuertoLP.model.entity.Asientos;
-import programacion3.proyectoAeropuertoLP.service.IAsientos;
+import programacion3.proyectoAeropuertoLP.service.CrudServiceProcessingController;
 
 import java.util.List;
 
 @Service
-public class AsientosImpl implements IAsientos {
+public class AsientosImpl implements CrudServiceProcessingController<Asientos, Integer>{
 
     @Autowired
     private AsientosDao asientosDao;
@@ -29,7 +30,7 @@ public class AsientosImpl implements IAsientos {
 
     @Transactional(readOnly = true)
     @Override
-    public Asientos findById(int id) {
+    public Asientos findById(Integer id) {
         return asientosDao.findById(id).orElse(null);
     }
 
@@ -37,6 +38,11 @@ public class AsientosImpl implements IAsientos {
     @Override
     public List<Asientos> findAll() {
         return (List<Asientos>) asientosDao.findAll();
+    }
+
+    @Override
+    public Asientos findByNombre(String nombre) {
+        return null;
     }
 
     @Transactional
