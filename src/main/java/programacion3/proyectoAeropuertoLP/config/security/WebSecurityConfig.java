@@ -115,8 +115,12 @@ public class WebSecurityConfig {
     }
 
     private List<RequestMatcher> permitAllRequestMatchers() {
-        return List.of( new AntPathRequestMatcher("/doc/**", "GET"),
-                new AntPathRequestMatcher("/v3/api-docs/**", "GET"),
-                new AntPathRequestMatcher("/api/v1/login", "POST"));
+        return List.of(
+                new AntPathRequestMatcher("/doc/**", "GET"),
+                new AntPathRequestMatcher("/swagger-ui/**", "GET"),
+                new AntPathRequestMatcher("/v3/api-docs/**", "GET"),  // Añade esta línea
+                new AntPathRequestMatcher("/api/v1/login", "POST")
+        );
     }
+
 }

@@ -3,9 +3,11 @@ package programacion3.proyectoAeropuertoLP.service.impl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import programacion3.proyectoAeropuertoLP.config.security.UserDetailsImpl;
 import programacion3.proyectoAeropuertoLP.model.entity.UserEntity;
 
+@Service
 public class UserDetailServiceImpl implements UserDetailsService {
     private final UserService userService;
 
