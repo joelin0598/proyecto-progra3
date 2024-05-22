@@ -8,7 +8,7 @@ import lombok.ToString;
 @Data
 @ToString
 @Builder
-public class UsuarioDto{
+public class ClienteDto {
 
     @NotBlank
     @NotEmpty
@@ -17,10 +17,12 @@ public class UsuarioDto{
 
     @NotBlank
     @NotEmpty
+    @Size(max = 50, message = "El campo debe tener como máximo {max} caracteres")
     private String nombres;
 
     @NotBlank
     @NotEmpty
+    @Size(max = 50, message = "El campo debe tener como máximo {max} caracteres")
     private String apellidos;
 
     @NotBlank

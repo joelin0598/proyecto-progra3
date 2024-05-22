@@ -1,8 +1,8 @@
 package programacion3.proyectoAeropuertoLP.model.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import programacion3.proyectoAeropuertoLP.model.entity.Usuario;
+import programacion3.proyectoAeropuertoLP.model.entity.Cliente;
 
-public interface UsuarioDao extends JpaRepository<Usuario, Integer> {
+public interface ClienteDao extends JpaRepository<Cliente, Integer> {
     boolean existsByPasaporte(String pasaporte);
 }

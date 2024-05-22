@@ -37,6 +37,6 @@ public class Puesto {
     private String modificadoPor;
 
     @OneToMany(mappedBy = "puestoId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Tripulacion> tripulacionList = new ArrayList<>();
+    private List<Empleados> empleadosList = new ArrayList<>();
 
 }

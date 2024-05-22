@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import programacion3.proyectoAeropuertoLP.model.dto.VueloDto;
 import programacion3.proyectoAeropuertoLP.model.entity.Aerolinea;
+import programacion3.proyectoAeropuertoLP.model.entity.Aeropuerto;
 import programacion3.proyectoAeropuertoLP.model.entity.Avion;
 import programacion3.proyectoAeropuertoLP.model.entity.Vuelo;
 import programacion3.proyectoAeropuertoLP.service.*;
@@ -25,13 +26,13 @@ public class VueloController {
     private IAvion avionService;
 
     @Autowired
-    private IAerolinea aerolineaService;
+    private CrudServiceProcessingController<Aerolinea, Integer> aerolineaService;
 
     @Autowired
     private IVuelo vueloService;
 
     @Autowired
-    private IAeropuerto aeropuertoService;
+    private CrudServiceProcessingController<Aeropuerto,Integer> aeropuertoService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -80,22 +81,62 @@ public class VueloController {
     }
 
     @GetMapping("get/fly/{id}")
-    public ResponseEntity<?> consultarPorId(@PathVariable Integer id) {
-        VueloDto vueloDto = vueloService.findById(id);
-        if (vueloDto != null) {
-            return ResponseEntity.ok(vueloDto);
+    public ResponseEntity<?> consultarVuelo(@PathVariable Integer id) {
+        Vuelo vuelo = vueloService.findById(id);
+        if (vuelo != null) {
+            return ResponseEntity.ok(vuelo);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     @GetMapping("get/flyAll")
-    public ResponseEntity<List<VueloDto>> consultarTodos() {
-        List<VueloDto> vuelos = vueloService.findAll();
+    public ResponseEntity<List<Vuelo>> listarVuelos() {
+        List<Vuelo> vuelos = vueloService.findAll();
         if (!vuelos.isEmpty()) {
             return ResponseEntity.ok(vuelos);
         } else {
             return ResponseEntity.noContent().build();
         }
+    }
+
+    @GetMapping("get/listPlanes")
+    public ResponseEntity<List<Avion>> listarAviones(){
+        List<Avion> aviones = avionService.findAll();
+        if (!aviones.isEmpty()) {
+            return ResponseEntity.ok(aviones);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+    @GetMapping("get/listAirlines")
+    public ResponseEntity<List<Aerolinea>>listarAerolineas(){
+        List<Aerolinea> aerolineas = aerolineaService.findAll();
+        if (!aerolineas.isEmpty()) {
+            return ResponseEntity.ok(aerolineas);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+    @GetMapping("get/listAirports")
+    public ResponseEntity <List<Aeropuerto>> listarAeropuertos(){
+        List<Aeropuerto> aeropuertos = aeropuertoService.findAll();
+        if (!aeropuertos.isEmpty()) {
+            return ResponseEntity.ok(aeropuertos);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+    @GetMapping("get/Airline/{nombre}")
+    public Aerolinea buscarAerolineaPorNombre(@PathVariable String nombre) {
+        return aerolineaService.findByNombre(nombre);
+    }
+
+    @GetMapping("get/Airport/{nombre}")
+    public Aeropuerto buscarAeropuertoPorNombre(@PathVariable String nombre) {
+        return aeropuertoService.findByNombre(nombre);
     }
 }

@@ -23,6 +23,9 @@ public class Rol {
     @Column(name = "nombre_rol")
     private String nombreRol;
 
+    @Column(name = "descripcion")
+    private String descripcion;
+
     @Column(name = "fecha_creacion")
     private Timestamp fechaCreacion;
 
@@ -35,6 +38,6 @@ public class Rol {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-    @OneToMany(mappedBy = "rol_id",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Usuario> usuarioList = new ArrayList<>();
+    @OneToMany(mappedBy = "rolId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Users> usersList = new ArrayList<>();
 }

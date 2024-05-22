@@ -16,8 +16,8 @@ import java.util.List;
 @ToString
 @Builder
 @Entity
-@Table(name ="usuario")
-public class Usuario{
+@Table(name ="cliente")
+public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,8 +25,8 @@ public class Usuario{
 
     @JsonIgnore
     @ManyToOne(cascade =CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "rol_id",referencedColumnName = "id")
-    private Rol rol_id;
+    @JoinColumn(name = "users_id",referencedColumnName = "id")
+    private Users usersId;
 
     @Column(name = "pasaporte", unique = true)
     private String pasaporte;
@@ -63,12 +63,7 @@ public class Usuario{
     @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+=]).*$", message = "El formato de la contraseña no es válido")
     private String password;
 
-    @OneToMany(mappedBy = "usuarioId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "clienteId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Boleto> boletoList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "usuarioId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Tripulacion> tripulacionList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "usuarioId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<UsuarioAerolinea> usuarioAerolineaList = new ArrayList<>();
 }

@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import programacion3.proyectoAeropuertoLP.model.dto.UsuarioDto;
-import programacion3.proyectoAeropuertoLP.model.entity.Usuario;
-import programacion3.proyectoAeropuertoLP.service.IUsuario;
+import programacion3.proyectoAeropuertoLP.model.dto.ClienteDto;
+import programacion3.proyectoAeropuertoLP.model.entity.Cliente;
+import programacion3.proyectoAeropuertoLP.service.ICliente;
 
 import java.util.List;
 
@@ -18,15 +18,15 @@ import java.util.List;
 public class UsuarioController {
 
     @Autowired
-    private IUsuario usuarioService;
+    private ICliente clienteService;
 
     @Autowired
     private ModelMapper modelMapper ;
     @PostMapping("post")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> crearPasajeros(@Valid @RequestBody UsuarioDto usuarioDto) {
-        Usuario usuario = new Usuario();
-        usuario= modelMapper.map(usuarioDto, Usuario.class);
+    public ResponseEntity<?> crearPasajeros(@Valid @RequestBody ClienteDto clienteDto) {
+        Cliente cliente = new Cliente();
+        cliente = modelMapper.map(clienteDto, Cliente.class);
 
         /*pasajero.setPasaporte(pasajeroDto.getPasaporte());
         pasajero.setNombres(pasajeroDto.getNombres());
@@ -40,20 +40,20 @@ public class UsuarioController {
         pasajero.setDireccion(pasajeroDto.getDireccion());
         pasajero.setPassword(pasajeroDto.getPassword());*/
 
-        Usuario nuevoUsuario = usuarioService.save(usuario);
-        return ResponseEntity.ok(nuevoUsuario);
+        Cliente nuevoCliente = clienteService.save(cliente);
+        return ResponseEntity.ok(nuevoCliente);
     }
 
     @GetMapping("get/pasajeros{id}")
-    public ResponseEntity<Usuario> consultarPasajeroId(@PathVariable Integer id) {
-        Usuario usuario = usuarioService.findById(id);
-        return ResponseEntity.ok(usuario);
+    public ResponseEntity<Cliente> consultarPasajeroId(@PathVariable Integer id) {
+        Cliente cliente = clienteService.findById(id);
+        return ResponseEntity.ok(cliente);
     }
 
     @GetMapping("getAll")
-    public ResponseEntity<List<Usuario>> consultarPasajeros() {
-        List<Usuario> usuarios = usuarioService.findAll();
-        return ResponseEntity.ok(usuarios);
+    public ResponseEntity<List<Cliente>> consultarPasajeros() {
+        List<Cliente> clientes = clienteService.findAll();
+        return ResponseEntity.ok(clientes);
     }
 
 

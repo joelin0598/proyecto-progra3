@@ -60,9 +60,11 @@ public class Avion{
     @Column(name = "modificado_por")
     private String modificadoPor;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "avionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Vuelo> numeroVueloList = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "avionId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Asientos> asientosList = new ArrayList<>();
 }

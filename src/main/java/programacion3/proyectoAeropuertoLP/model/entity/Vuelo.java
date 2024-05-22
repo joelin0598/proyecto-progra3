@@ -15,29 +15,25 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "vuelo")
-public class Vuelo {
+public class Vuelo extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
     private Aerolinea aerolineaId;
 
-    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "aeropuerto_salida_id",referencedColumnName = "id")
     private Aeropuerto aeropuertoSalidaId;
 
-    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "aeropuerto_llegada_id",referencedColumnName = "id")
     private Aeropuerto aeropuertoLlegadaId;
 
-    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "avion_id",referencedColumnName = "id")
     private Avion avionId;
@@ -57,40 +53,7 @@ public class Vuelo {
     @Column(name = "precio_clase_ejecutiva")
     private float precioClaseEjecutiva;
 
-    @Column(name = "fecha_creacion")
-    private LocalDateTime fechaCreacion;
-
-    @Column(name = "fecha_modificacion")
-    private LocalDateTime fechaModificacion;
-
-    @Column(name = "creado_por")
-    private String creadoPor;
-
-    @Column(name = "modificado_por")
-    private String modificadoPor;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "numeroVueloId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Boleto> boletoList = new ArrayList<>();
-
-    @PrePersist
-    public void prePersist() {
-        this.fechaCreacion = LocalDateTime.now();
-        this.fechaModificacion = LocalDateTime.now();
-        asignarValorPorDefecto();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.fechaModificacion = LocalDateTime.now();
-        asignarValorPorDefecto();
-    }
-
-    private void asignarValorPorDefecto() {
-        if (this.creadoPor == null || this.creadoPor.isEmpty()) {
-            this.creadoPor = "Sistema";
-        }
-        if (this.modificadoPor == null || this.modificadoPor.isEmpty()) {
-            this.modificadoPor = "Sistema";
-        }
-    }
 }

@@ -29,6 +29,9 @@ public class Destino{
     @JoinColumn(name = "aeropuerto_id",referencedColumnName = "id")
     private Aeropuerto aeropuertoId;
 
+    @Column(name = "destino_final")
+    private String destinoFinal;
+
     @Column(name = "descripcion")
     private String descripcion;
 

@@ -5,56 +5,56 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import programacion3.proyectoAeropuertoLP.exception.FormatoContraseñaInvalidoException;
 import programacion3.proyectoAeropuertoLP.exception.PasaporteExistenteException;
-import programacion3.proyectoAeropuertoLP.model.entity.Usuario;
-import programacion3.proyectoAeropuertoLP.model.dao.UsuarioDao;
-import programacion3.proyectoAeropuertoLP.service.IUsuario;
+import programacion3.proyectoAeropuertoLP.model.entity.Cliente;
+import programacion3.proyectoAeropuertoLP.model.dao.ClienteDao;
+import programacion3.proyectoAeropuertoLP.service.ICliente;
 
 import java.util.List;
 
 @Service
-public class UsuarioImpl implements IUsuario {
+public class ClienteImpl implements ICliente {
 
     @Autowired
-    private UsuarioDao usuarioDao;
+    private ClienteDao clienteDao;
 
     @Transactional
     @Override
-    public Usuario save(Usuario usuario){
-        if (usuarioDao.existsByPasaporte(usuario.getPasaporte())) {
+    public Cliente save(Cliente cliente){
+        if (clienteDao.existsByPasaporte(cliente.getPasaporte())) {
             throw new PasaporteExistenteException("El número de pasaporte ya está en uso");
         }
-        if (!usuario.getPassword().matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+=]).*$")) {
+        if (!cliente.getPassword().matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+=]).*$")) {
             throw new FormatoContraseñaInvalidoException("El formato de la contraseña no es válido");
         }
-        return usuarioDao.save(usuario);
+        return clienteDao.save(cliente);
     }
 
     @Transactional
     @Override
-    public Usuario update(Usuario usuario) {
-        return usuarioDao.save(usuario);
+    public Cliente update(Cliente cliente) {
+        return clienteDao.save(cliente);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public Usuario findById(Integer id) {
-        return usuarioDao.findById(id).orElse(null);
+    public Cliente findById(Integer id) {
+        return clienteDao.findById(id).orElse(null);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public List<Usuario> findAll() {
-        return (List<Usuario>) usuarioDao.findAll();
+    public List<Cliente> findAll() {
+        return (List<Cliente>) clienteDao.findAll();
     }
 
     @Transactional
     @Override
-    public void delete(Usuario usuario) {
-        usuarioDao.delete(usuario);
+    public void delete(Cliente cliente) {
+        clienteDao.delete(cliente);
     }
 
     @Override
     public boolean existsByPasaporte(String pasaporte) {
-        return usuarioDao.existsByPasaporte(pasaporte);
+        return clienteDao.existsByPasaporte(pasaporte);
     }
 }
