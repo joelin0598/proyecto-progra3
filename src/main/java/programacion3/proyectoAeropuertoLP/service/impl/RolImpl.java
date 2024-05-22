@@ -5,15 +5,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import programacion3.proyectoAeropuertoLP.model.dao.RolDao;
 import programacion3.proyectoAeropuertoLP.model.entity.Rol;
-import programacion3.proyectoAeropuertoLP.service.IRol;
+import programacion3.proyectoAeropuertoLP.service.CrudServiceProcessingController;
 
 import java.util.List;
 
 @Service
-public class RolImpl implements IRol {
+public class RolImpl implements CrudServiceProcessingController<Rol, Integer>{
 
-    @Autowired
-    private RolDao rolDao;
+    private final RolDao rolDao;
+
+    public RolImpl(RolDao rolDao) {
+        this.rolDao = rolDao;
+    }
 
     @Transactional
     @Override
@@ -37,6 +40,11 @@ public class RolImpl implements IRol {
     @Override
     public List<Rol> findAll() {
         return (List<Rol>) rolDao.findAll();
+    }
+
+    @Override
+    public Rol findByNombre(String nombre) {
+        return null;
     }
 
     @Transactional

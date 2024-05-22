@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.Users;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 

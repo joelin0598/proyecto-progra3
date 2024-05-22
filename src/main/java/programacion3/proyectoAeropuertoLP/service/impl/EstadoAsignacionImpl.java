@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import programacion3.proyectoAeropuertoLP.model.dao.EstadoAsignacionDao;
 import programacion3.proyectoAeropuertoLP.model.entity.EstadoAsignacion;
-import programacion3.proyectoAeropuertoLP.service.IEstadoAsignacion;
+import programacion3.proyectoAeropuertoLP.service.CrudServiceProcessingController;
 
 import java.util.List;
 
 @Service
-public class EstadoAsignacionImpl implements IEstadoAsignacion {
+public class EstadoAsignacionImpl implements CrudServiceProcessingController<EstadoAsignacion, Integer>{
 
     @Autowired
     private EstadoAsignacionDao estadoAsignacionDao;
@@ -37,6 +37,11 @@ public class EstadoAsignacionImpl implements IEstadoAsignacion {
     @Override
     public List<EstadoAsignacion> findAll() {
         return (List<EstadoAsignacion>) estadoAsignacionDao.findAll();
+    }
+
+    @Override
+    public EstadoAsignacion findByNombre(String nombre) {
+        return null;
     }
 
     @Transactional

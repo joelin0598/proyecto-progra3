@@ -1,7 +1,6 @@
 package programacion3.proyectoAeropuertoLP.service;
 
-import org.apache.catalina.User;
-import programacion3.proyectoAeropuertoLP.model.entity.Users;
+import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.Users;
 
 import java.util.List;
 

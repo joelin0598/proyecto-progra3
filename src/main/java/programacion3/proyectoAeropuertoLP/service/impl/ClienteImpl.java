@@ -23,9 +23,9 @@ public class ClienteImpl implements ICliente {
         if (clienteDao.existsByPasaporte(cliente.getPasaporte())) {
             throw new PasaporteExistenteException("El número de pasaporte ya está en uso");
         }
-        if (!cliente.getPassword().matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+=]).*$")) {
+        /*if (!cliente.getPassword().matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+=]).*$")) {
             throw new FormatoContraseñaInvalidoException("El formato de la contraseña no es válido");
-        }
+        }*/
         return clienteDao.save(cliente);
     }
 

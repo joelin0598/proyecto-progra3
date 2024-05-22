@@ -2,6 +2,7 @@ package programacion3.proyectoAeropuertoLP.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.Users;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name ="rol")
-public class Rol {
+public class Rol extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -26,18 +27,6 @@ public class Rol {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "fecha_creacion")
-    private Timestamp fechaCreacion;
-
-    @Column(name = "fecha_modificacion")
-    private Timestamp fechaModificacion;
-
-    @Column(name = "creado_por")
-    private String creadoPor;
-
-    @Column(name = "modificado_por")
-    private String modificadoPor;
-
-    @OneToMany(mappedBy = "rolId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Users> usersList = new ArrayList<>();
+    /*@OneToMany(mappedBy = "rolId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Users> usersList = new ArrayList<>();*/
 }

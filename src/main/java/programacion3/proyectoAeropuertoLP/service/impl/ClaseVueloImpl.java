@@ -5,12 +5,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import programacion3.proyectoAeropuertoLP.model.dao.ClaseVueloDao;
 import programacion3.proyectoAeropuertoLP.model.entity.ClaseVuelo;
-import programacion3.proyectoAeropuertoLP.service.IClaseVuelo;
+import programacion3.proyectoAeropuertoLP.service.CrudServiceProcessingController;
 
 import java.util.List;
 
 @Service
-public class ClaseVueloImpl implements IClaseVuelo {
+public class ClaseVueloImpl implements CrudServiceProcessingController<ClaseVuelo, Integer>{
+
     @Autowired
     private ClaseVueloDao claseVueloDao;
 
@@ -36,6 +37,12 @@ public class ClaseVueloImpl implements IClaseVuelo {
     @Override
     public List<ClaseVuelo> findAll() {
         return (List<ClaseVuelo>) claseVueloDao.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public ClaseVuelo findByNombre(String nombre) {
+        return null;
     }
 
     @Transactional

@@ -33,11 +33,11 @@ public class ClienteDto {
     @NotEmpty
     private String nation;
 
-    @NotBlank
+    /*@NotBlank
     @NotEmpty
     @Email
     @Size(max = 100)
-    private String email;
+    private String email;*/
 
     @NotBlank
     @NotEmpty
@@ -57,10 +57,10 @@ public class ClienteDto {
     @NotEmpty
     private String direccion;
 
-    @NotBlank
+    /*@NotBlank
     @NotEmpty
     @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
     @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+=]).*$", message = "El formato de la contraseña no es válido")
-    private String password;
+    private String password;*/
     
 }

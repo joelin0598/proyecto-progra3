@@ -27,19 +27,6 @@ public class UsuarioController {
     public ResponseEntity<?> crearPasajeros(@Valid @RequestBody ClienteDto clienteDto) {
         Cliente cliente = new Cliente();
         cliente = modelMapper.map(clienteDto, Cliente.class);
-
-        /*pasajero.setPasaporte(pasajeroDto.getPasaporte());
-        pasajero.setNombres(pasajeroDto.getNombres());
-        pasajero.setApellidos(pasajeroDto.getApellidos());
-        pasajero.setFechaNacimiento(pasajeroDto.getFechaNacimiento());
-        pasajero.setNation(pasajeroDto.getNation());
-        pasajero.setEmail(pasajeroDto.getEmail());
-        pasajero.setCodigoAreaPais(pasajeroDto.getCodigoAreaPais());
-        pasajero.setTel(pasajeroDto.getTel());
-        pasajero.setTelEmergencias(pasajeroDto.getTelEmergencias());
-        pasajero.setDireccion(pasajeroDto.getDireccion());
-        pasajero.setPassword(pasajeroDto.getPassword());*/
-
         Cliente nuevoCliente = clienteService.save(cliente);
         return ResponseEntity.ok(nuevoCliente);
     }

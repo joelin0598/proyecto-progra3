@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.Users;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,10 +59,10 @@ public class Cliente {
     @Column(name = "direccion")
     private String direccion;
 
-    @Column(name = "password")
+    /*@Column(name = "password")
     @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
     @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+=]).*$", message = "El formato de la contraseña no es válido")
-    private String password;
+    private String password;*/
 
     @OneToMany(mappedBy = "clienteId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Boleto> boletoList = new ArrayList<>();

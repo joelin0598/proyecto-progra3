@@ -3,7 +3,7 @@ package programacion3.proyectoAeropuertoLP.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import programacion3.proyectoAeropuertoLP.model.dao.UsersDao;
-import programacion3.proyectoAeropuertoLP.model.entity.Users;
+import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.Users;
 import programacion3.proyectoAeropuertoLP.service.IUsers;
 
 import java.util.List;
