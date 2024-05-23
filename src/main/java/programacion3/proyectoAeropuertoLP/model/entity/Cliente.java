@@ -3,10 +3,8 @@ package programacion3.proyectoAeropuertoLP.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.*;
-import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.Users;
+import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +25,7 @@ public class Cliente {
     @JsonIgnore
     @ManyToOne(cascade =CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "users_id",referencedColumnName = "id")
-    private Users usersId;
+    private User userId;
 
     @Column(name = "pasaporte", unique = true)
     private String pasaporte;

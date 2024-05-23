@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
-import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.Users;
+import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,7 +26,7 @@ public class Empleados {
     @JsonIgnore
     @ManyToOne(cascade =CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "users_id",referencedColumnName = "id")
-    private Users usersId;
+    private User userId;
 
     @JsonIgnore
     @ManyToOne(cascade =CascadeType.ALL, fetch = FetchType.EAGER)

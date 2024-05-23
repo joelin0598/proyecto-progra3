@@ -7,7 +7,6 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import programacion3.proyectoAeropuertoLP.model.entity.BaseEntity;
 import programacion3.proyectoAeropuertoLP.model.entity.Cliente;
 import programacion3.proyectoAeropuertoLP.model.entity.Empleados;
 
@@ -22,15 +21,20 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "users")
-public class Users extends BaseEntity implements UserDetails {
+public class User  extends BaseEntity implements UserDetails{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
     @Size(max = 255)
-    @Column(name = "nickname")
-    private String nickname;
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Size(max = 255)
+    @Column(name = "last_name")
+    private String lastName;
 
     @NotBlank
     @NotEmpty
@@ -39,8 +43,6 @@ public class Users extends BaseEntity implements UserDetails {
     @Column(name = "email")
     private String email;
 
-    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+=]).*$", message = "El formato de la contraseña no es válido")
     @Column(name = "password")
     private String password;
 
@@ -81,13 +83,4 @@ public class Users extends BaseEntity implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "usersId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Cliente> clienteList = new ArrayList<>();
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "usersId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Empleados> empleadosList = new ArrayList<>();
-
 }

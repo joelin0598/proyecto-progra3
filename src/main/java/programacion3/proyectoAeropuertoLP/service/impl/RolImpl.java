@@ -1,10 +1,9 @@
 package programacion3.proyectoAeropuertoLP.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import programacion3.proyectoAeropuertoLP.model.dao.RolDao;
-import programacion3.proyectoAeropuertoLP.model.entity.Rol;
+import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.Rol;
 import programacion3.proyectoAeropuertoLP.service.CrudServiceProcessingController;
 
 import java.util.List;

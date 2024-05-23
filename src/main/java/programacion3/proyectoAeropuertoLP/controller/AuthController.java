@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.AuthResponse;
-import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.AuthenticationRequest;
-import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.RegisterRequest;
+import programacion3.proyectoAeropuertoLP.model.dto.AuthAndRegister.AuthResponse;
+import programacion3.proyectoAeropuertoLP.model.dto.AuthAndRegister.AuthenticationRequest;
+import programacion3.proyectoAeropuertoLP.model.dto.AuthAndRegister.RegisterRequest;
 import programacion3.proyectoAeropuertoLP.service.AuthService;
 
 @RestController

@@ -1,4 +1,4 @@
-package programacion3.proyectoAeropuertoLP.model.entity;
+package programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;

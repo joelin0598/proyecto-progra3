@@ -3,7 +3,6 @@ package programacion3.proyectoAeropuertoLP.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import programacion3.proyectoAeropuertoLP.exception.FormatoContraseñaInvalidoException;
 import programacion3.proyectoAeropuertoLP.exception.PasaporteExistenteException;
 import programacion3.proyectoAeropuertoLP.model.entity.Cliente;
 import programacion3.proyectoAeropuertoLP.model.dao.ClienteDao;

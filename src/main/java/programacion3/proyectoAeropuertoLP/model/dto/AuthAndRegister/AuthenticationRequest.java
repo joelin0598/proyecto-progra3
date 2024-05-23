@@ -1,4 +1,5 @@
-package programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister;
+package programacion3.proyectoAeropuertoLP.model.dto.AuthAndRegister;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,10 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterRequest {
-
+public class AuthenticationRequest {
     private String email;
-    private String nickname;
     private String password;
 }
-

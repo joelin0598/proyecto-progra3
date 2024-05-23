@@ -1,12 +1,7 @@
-package programacion3.proyectoAeropuertoLP.model.entity;
+package programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister;
 
 import jakarta.persistence.*;
 import lombok.*;
-import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.Users;
-
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -15,7 +10,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name ="rol")
-public class Rol extends BaseEntity{
+public class Rol extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

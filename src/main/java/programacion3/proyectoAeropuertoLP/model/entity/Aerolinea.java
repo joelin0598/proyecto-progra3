@@ -2,7 +2,8 @@ package programacion3.proyectoAeropuertoLP.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import java.sql.Timestamp;
+import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.BaseEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name ="aerolinea")
-public class Aerolinea extends BaseEntity{
+public class Aerolinea extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

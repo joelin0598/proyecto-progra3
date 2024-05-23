@@ -5,8 +5,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import programacion3.proyectoAeropuertoLP.exception.FormatoContraseñaInvalidoException;
 import programacion3.proyectoAeropuertoLP.model.dao.UserRepository;
+import programacion3.proyectoAeropuertoLP.model.dto.AuthAndRegister.AuthResponse;
+import programacion3.proyectoAeropuertoLP.model.dto.AuthAndRegister.AuthenticationRequest;
+import programacion3.proyectoAeropuertoLP.model.dto.AuthAndRegister.RegisterRequest;
 import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.*;
 import programacion3.proyectoAeropuertoLP.service.AuthService;
 
@@ -21,11 +23,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AuthResponse register(RegisterRequest request) {
-        if (!request.getPassword().matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+=]).*$")) {
-            throw new FormatoContraseñaInvalidoException("El formato de la contraseña no es válido");
-        }
-        var user = Users.builder()
-                .nickname(request.getNickname())
+        var user = User.builder()
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)

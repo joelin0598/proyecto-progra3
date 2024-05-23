@@ -1,4 +1,4 @@
-package programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister;
+package programacion3.proyectoAeropuertoLP.model.dto.AuthAndRegister;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthResponse {
-
     private String token;
 }
