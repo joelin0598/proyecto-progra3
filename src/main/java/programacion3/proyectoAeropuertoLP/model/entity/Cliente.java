@@ -4,6 +4,7 @@ package programacion3.proyectoAeropuertoLP.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.BaseEntity;
 import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.User;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name ="cliente")
-public class Cliente {
+public class Cliente extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -30,20 +31,11 @@ public class Cliente {
     @Column(name = "pasaporte", unique = true)
     private String pasaporte;
 
-    @Column(name = "nombres")
-    private String nombres;
-
-    @Column(name = "apellidos")
-    private String apellidos;
-
     @Column(name = "fecha_nacimiento")
     private String fechaNacimiento;
 
     @Column(name = "nacionalidad")
     private String nation;
-
-    @Column(name = "correo_electronico")
-    private String email;
 
     @Column(name = "codigo_area_pais")
     private String codigoAreaPais;
@@ -56,11 +48,6 @@ public class Cliente {
 
     @Column(name = "direccion")
     private String direccion;
-
-    /*@Column(name = "password")
-    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-+=]).*$", message = "El formato de la contraseña no es válido")
-    private String password;*/
 
     @OneToMany(mappedBy = "clienteId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Boleto> boletoList = new ArrayList<>();

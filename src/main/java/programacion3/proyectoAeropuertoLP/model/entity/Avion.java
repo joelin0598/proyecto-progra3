@@ -3,6 +3,8 @@ package programacion3.proyectoAeropuertoLP.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.BaseEntity;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name ="avion")
-public class Avion{
+public class Avion extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -23,15 +25,17 @@ public class Avion{
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
-    private Aerolinea aerolineaId;
+    private Aerolinea aerolinea;
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "tripulacion_id",referencedColumnName = "id")
     private Tripulacion tripulacionId;
 
-    @Column(name = "estado")
-    private boolean estado;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "estado_id")
+    private Estado estado;
 
     @Column(name = "modelo")
     private String modelo;
@@ -47,18 +51,6 @@ public class Avion{
 
     @Column(name = "descripcion")
     private String descripcion;
-
-    @Column(name = "fecha_creacion")
-    private Timestamp fechaCreacion;
-
-    @Column(name = "fecha_modificacion")
-    private Timestamp fechaModificacion;
-
-    @Column(name = "creado_por")
-    private String creadoPor;
-
-    @Column(name = "modificado_por")
-    private String modificadoPor;
 
     @JsonIgnore
     @OneToMany(mappedBy = "avionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)

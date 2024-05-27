@@ -6,6 +6,7 @@ import programacion3.proyectoAeropuertoLP.model.dao.AeropuertoDao;
 import programacion3.proyectoAeropuertoLP.model.dao.AvionDao;
 import programacion3.proyectoAeropuertoLP.model.entity.Aerolinea;
 import programacion3.proyectoAeropuertoLP.model.entity.Avion;
+import programacion3.proyectoAeropuertoLP.model.entity.Estado;
 import programacion3.proyectoAeropuertoLP.service.CrudServiceProcessingController;
 import programacion3.proyectoAeropuertoLP.service.IAvion;
 
@@ -44,12 +45,6 @@ public class AvionImpl implements IAvion {
         return (List<Avion>) avionDao.findAll();
     }
 
-    @Transactional(readOnly = true)
-    @Override
-    public Avion findByModelo(String modelo) {
-        return avionDao.findByModelo(modelo);
-    }
-
     @Transactional
     @Override
     public void delete(Avion avion) {
@@ -61,5 +56,9 @@ public class AvionImpl implements IAvion {
         return (List<Avion>) avionDao.findByAerolineaId(aerolinea);
     }
 
+    @Override
+    public List<Avion> findByAerolineaAndEstado(Aerolinea aerolinea, Estado estado) {
+        return avionDao.findByAerolineaAndEstado(aerolinea, estado);
+    }
 }
 

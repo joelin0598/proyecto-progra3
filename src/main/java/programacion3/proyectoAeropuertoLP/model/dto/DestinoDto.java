@@ -15,9 +15,4 @@ public class DestinoDto{
     private Integer aerolineaId;
     private Integer aeropuertoId;
     private String descripcion;
-    private Timestamp fechaCreacion;
-    private Timestamp fechaModificacion;
-    private String creadoPor;
-    private String modificadoPor;
-
 }

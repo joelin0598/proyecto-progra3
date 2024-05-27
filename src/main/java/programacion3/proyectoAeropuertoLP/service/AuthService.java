@@ -5,6 +5,8 @@ import programacion3.proyectoAeropuertoLP.model.dto.AuthAndRegister.Authenticati
 import programacion3.proyectoAeropuertoLP.model.dto.AuthAndRegister.RegisterRequest;
 
 public interface AuthService {
-    AuthResponse register(RegisterRequest request );
+
+    AuthResponse register( RegisterRequest request );
+
     AuthResponse authenticate(AuthenticationRequest request);
 }

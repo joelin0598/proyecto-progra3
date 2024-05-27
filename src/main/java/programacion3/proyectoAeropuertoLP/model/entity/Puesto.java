@@ -2,6 +2,7 @@ package programacion3.proyectoAeropuertoLP.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.BaseEntity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name ="puesto")
-public class Puesto {
+public class Puesto extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,18 +24,6 @@ public class Puesto {
 
     @Column(name = "puesto_nombre")
     private String puestoNombre;
-
-    @Column(name = "fecha_creacion")
-    private LocalDateTime fechaCreacion;
-
-    @Column(name = "fecha_modificacion")
-    private LocalDateTime fechaModificacion;
-
-    @Column(name = "creado_por")
-    private String creadoPor;
-
-    @Column(name = "modificado_por")
-    private String modificadoPor;
 
     @OneToMany(mappedBy = "puestoId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Empleados> empleadosList = new ArrayList<>();

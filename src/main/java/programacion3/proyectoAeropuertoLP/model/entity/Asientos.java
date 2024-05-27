@@ -3,6 +3,7 @@ package programacion3.proyectoAeropuertoLP.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.BaseEntity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -16,11 +17,16 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name ="asientos")
-public class Asientos{
+public class Asientos extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
+    @JoinColumn(name = "estado_id",referencedColumnName = "id")
+    private Estado estadoId;
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
@@ -35,18 +41,6 @@ public class Asientos{
 
     @Column(name = "ocupado")
     private boolean ocupado;
-
-    @Column(name = "fecha_creacion")
-    private LocalDateTime fechaCreacion;
-
-    @Column(name = "fecha_modificacion")
-    private LocalDateTime fechaModificacion;
-
-    @Column(name = "creado_por")
-    private String creadoPor;
-
-    @Column(name = "modificado_por")
-    private String modificadoPor;
 
     @OneToMany(mappedBy = "asientoId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Boleto> boletoList = new ArrayList<>();

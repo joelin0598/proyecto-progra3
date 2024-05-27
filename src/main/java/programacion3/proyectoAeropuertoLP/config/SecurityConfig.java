@@ -18,32 +18,29 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableMethodSecurity
-public class SecurityConfig {
+public class SecurityConfig {//SecurityFilterChain es una cadena de seguridad donde se van ejecutando el filtrado y la autenticación. Se define la seguridad que se le va a aplicar a los endpoints
 
     private final JwtFilter jwtFilter;
     private final AuthenticationProvider authenticationProvider;
 
-    @Bean
+    @Bean//Cadena de filtrado, que será la responsable de lanzar nuestro filtro antes del proceso de autenticación
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth.requestMatchers(publicEndpoints()).permitAll()
+                .authorizeHttpRequests(auth -> auth.requestMatchers(publicEndpoints()).permitAll()//Se define que métodos son públicos, lista blanca
                         .anyRequest().authenticated())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);//UsernamePasswordAuthenticationFilter es un filtro que se ejecuta antes de JwtFilter y es propia de Spring Security
         return httpSecurity.build();
     }
 
     private RequestMatcher publicEndpoints() {
         return new OrRequestMatcher(
-                //Endpoints AuthAndRegister
+                new AntPathRequestMatcher("/api/greeting/sayHelloPublic"),
                 new AntPathRequestMatcher("/api/auth/**"),
-                //Documentation Swagger
                 new AntPathRequestMatcher("/doc/**", "GET"),
                 new AntPathRequestMatcher("/swagger-ui/**", "GET"),
                 new AntPathRequestMatcher("/v3/api-docs/**", "GET")
-                ,new AntPathRequestMatcher("/api/greeting/sayHelloPublic")
-                //,new AntPathRequestMatcher("/api/users/**")
         );
     }
 }

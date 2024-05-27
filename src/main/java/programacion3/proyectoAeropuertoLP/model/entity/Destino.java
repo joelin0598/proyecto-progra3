@@ -3,6 +3,8 @@ package programacion3.proyectoAeropuertoLP.model.entity;
         import com.fasterxml.jackson.annotation.JsonIgnore;
         import jakarta.persistence.*;
         import lombok.*;
+        import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.BaseEntity;
+
         import java.sql.Timestamp;
         import java.io.Serializable;
 
@@ -13,7 +15,7 @@ package programacion3.proyectoAeropuertoLP.model.entity;
 @Builder
 @Entity
 @Table(name ="destino")
-public class Destino{
+public class Destino extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -34,16 +36,4 @@ public class Destino{
 
     @Column(name = "descripcion")
     private String descripcion;
-
-    @Column(name = "fecha_creacion")
-    private Timestamp fechaCreacion;
-
-    @Column(name = "fecha_modificacion")
-    private Timestamp fechaModificacion;
-
-    @Column(name = "creado_por")
-    private String creadoPor;
-
-    @Column(name = "modificado_por")
-    private String modificadoPor;
 }

@@ -13,9 +13,4 @@ public class AerolineaDto{
     private Integer id;
     private String nombre;
     private String descripcion;
-    private Timestamp fechaCreacion;
-    private Timestamp fechaModificacion;
-    private String creadoPor;
-    private String modificadoPor;
-
 }

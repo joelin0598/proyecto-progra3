@@ -35,7 +35,7 @@ public class Aerolinea extends BaseEntity {
     private List<Destino> destinosList = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "aerolineaId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "aerolinea",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Avion> avionList = new ArrayList<>();
 
     @JsonIgnore

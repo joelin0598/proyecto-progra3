@@ -6,6 +6,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import lombok.Getter;
 import lombok.Setter;
+import programacion3.proyectoAeropuertoLP.config.SecurityUtil;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -14,31 +15,32 @@ import java.time.LocalDateTime;
 @Setter
 @MappedSuperclass
 public class BaseEntity implements Serializable {
-    @Column(name = "fecha_creacion")
+    @Column(name = "fecha_creacion", updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime fechaCreacion;
 
-    @Column(name = "fecha_modificacion")
+    @Column(name = "fecha_modificacion", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime fechaModificacion;
 
-    @Column(name = "creado_por")
+    @Column(name = "creado_por", nullable = false, columnDefinition = "VARCHAR(255) DEFAULT 'Sistema'")
     private String creadoPor;
 
-    @Column(name = "modificado_por")
+    @Column(name = "modificado_por", nullable = false, columnDefinition = "VARCHAR(255) DEFAULT 'Sistema'")
     private String modificadoPor;
 
     @PrePersist
     public void prePersist() {
         fechaCreacion = LocalDateTime.now();
         if (this.creadoPor == null || this.creadoPor.isEmpty()) {
-            this.creadoPor = "Sistema";
+            this.creadoPor = SecurityUtil.getCurrentUser();
+            if (this.creadoPor.equals("Sistema")) {
+                this.creadoPor = "Auto-Registro";
+            }
         }
     }
 
     @PreUpdate
     public void preUpdate() {
         fechaModificacion = LocalDateTime.now();
-        if (this.modificadoPor == null || this.modificadoPor.isEmpty()) {
-            this.modificadoPor = "Sistema";
-        }
+        this.modificadoPor = SecurityUtil.getCurrentUser();
     }
 }

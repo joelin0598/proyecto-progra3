@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import programacion3.proyectoAeropuertoLP.exception.AvionesActiveException;
 import programacion3.proyectoAeropuertoLP.model.dto.VueloDto;
-import programacion3.proyectoAeropuertoLP.model.entity.Aerolinea;
-import programacion3.proyectoAeropuertoLP.model.entity.Aeropuerto;
-import programacion3.proyectoAeropuertoLP.model.entity.Avion;
-import programacion3.proyectoAeropuertoLP.model.entity.Vuelo;
+import programacion3.proyectoAeropuertoLP.model.entity.*;
 import programacion3.proyectoAeropuertoLP.service.*;
 
 import java.time.LocalDateTime;
@@ -37,56 +35,77 @@ public class VueloController {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private CrudServiceProcessingController<Estado, Integer> estadoService;
 
-    @GetMapping("/{aerolineaId}/avionesActivos")
-    public ResponseEntity<List<Avion>> listarAvionesActivos(@PathVariable Integer aerolineaId) {
-        Aerolinea aerolinea = aerolineaService.findById(aerolineaId);
-        List<Avion> avionesActivos = avionService.findByAerolineaId(aerolinea)
-                .stream()
-                .filter(Avion::isEstado)
-                .toList();
 
-        if (avionesActivos.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Collections.emptyList());
-        } else {
-            return ResponseEntity.ok(avionesActivos);
+    @GetMapping("/avionesActivos/{aerolineaId}")
+    public ResponseEntity<?> listarAvionesActivos(@PathVariable Integer aerolineaId) {
+        try {
+            Aerolinea aerolinea = aerolineaService.findById(aerolineaId);
+            if (aerolinea == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Aerolinea no encontrada");
+            }
+
+            Estado estadoActivo = estadoService.findById(1);
+            if (estadoActivo == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Estado activo no encontrado");
+            }
+            List<Avion> avionesActivos = avionService.findByAerolineaAndEstado(aerolinea, estadoActivo);
+            if (avionesActivos.isEmpty()) {
+                throw new AvionesActiveException("No hay aviones activos disponibles para esta aerolínea.");
+            } else {
+                return ResponseEntity.ok(avionesActivos);
+            }
+        } catch (AvionesActiveException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del servidor");
         }
     }
 
     @PostMapping("post/fly")
-    public ResponseEntity<?> crearVuelo(@Valid @RequestBody VueloDto vueloDto){
-        Vuelo vuelo = new Vuelo();
+    public ResponseEntity<?> crearVuelo(@Valid @RequestBody VueloDto vueloDto) {
+        try {
+            Vuelo vuelo = new Vuelo();
 
-        LocalDateTime fechaActual = LocalDateTime.now();
+            LocalDateTime fechaActual = LocalDateTime.now();
 
-        if (vueloDto.getFechaHoraSalida().isEqual(vueloDto.getFechaHoraLlegada()) ||
-                vueloDto.getFechaHoraSalida().isBefore(fechaActual) ||
-                vueloDto.getFechaHoraLlegada().isBefore(fechaActual)) {
-            return ResponseEntity.badRequest().body("Las fechas de salida y llegada deben ser posteriores a la fecha actual");
-        }
+            if (vueloDto.getFechaHoraSalida().isEqual(vueloDto.getFechaHoraLlegada()) ||
+                    vueloDto.getFechaHoraSalida().isBefore(fechaActual) ||
+                    vueloDto.getFechaHoraLlegada().isBefore(fechaActual)) {
+                return ResponseEntity.badRequest().body("Las fechas de salida y llegada deben ser posteriores a la fecha actual");
+            }
 
-        vuelo.setAerolineaId(aerolineaService.findById(vueloDto.getAerolineaId()));
-        vuelo.setAvionId(avionService.findById(vueloDto.getAvionId()));
-        vuelo.setAeropuertoSalidaId(aeropuertoService.findById(vueloDto.getAeropuertoSalidaId()));
-        vuelo.setAeropuertoLlegadaId(aeropuertoService.findById(vueloDto.getAeropuertoLlegadaId()));
-        vuelo.setAsientosDisponibles(vueloDto.getAsientosDisponibles());
-        vuelo.setFechaHoraSalida(vueloDto.getFechaHoraSalida());
-        vuelo.setFechaHoraLlegada(vueloDto.getFechaHoraLlegada());
-        vuelo.setPrecioClaseEconomica(vueloDto.getPrecioClaseEconomica());
-        vuelo.setPrecioClaseEjecutiva(vueloDto.getPrecioClaseEjecutiva());
+            vuelo.setAerolineaId(aerolineaService.findById(vueloDto.getAerolineaId()));
+            vuelo.setAvionId(avionService.findById(vueloDto.getAvionId()));
+            vuelo.setAeropuertoSalidaId(aeropuertoService.findById(vueloDto.getAeropuertoSalidaId()));
+            vuelo.setAeropuertoLlegadaId(aeropuertoService.findById(vueloDto.getAeropuertoLlegadaId()));
+            vuelo.setAsientosDisponibles(vueloDto.getAsientosDisponibles());
+            vuelo.setFechaHoraSalida(vueloDto.getFechaHoraSalida());
+            vuelo.setFechaHoraLlegada(vueloDto.getFechaHoraLlegada());
+            vuelo.setPrecioClaseEconomica(vueloDto.getPrecioClaseEconomica());
+            vuelo.setPrecioClaseEjecutiva(vueloDto.getPrecioClaseEjecutiva());
 
-        Vuelo nuevoVuelo = vueloService.save(vuelo);
-        return ResponseEntity.status(HttpStatus.CREATED).body(nuevoVuelo);
+            Vuelo nuevoVuelo = vueloService.save(vuelo);
+            return ResponseEntity.status(HttpStatus.CREATED).body(nuevoVuelo);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del sistema");
+            }
     }
-
     @GetMapping("get/fly/{id}")
     public ResponseEntity<?> consultarVuelo(@PathVariable Integer id) {
-        Vuelo vuelo = vueloService.findById(id);
-        if (vuelo != null) {
-            return ResponseEntity.ok(vuelo);
-        } else {
-            return ResponseEntity.notFound().build();
+        try {
+            Vuelo vuelo = vueloService.findById(id);
+            if (vuelo != null) {
+                return ResponseEntity.ok(vuelo);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del sistema");
         }
     }
 

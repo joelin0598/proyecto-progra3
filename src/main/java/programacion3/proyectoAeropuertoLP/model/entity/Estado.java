@@ -1,11 +1,9 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.BaseEntity;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +13,9 @@ import java.util.List;
 @ToString
 @Builder
 @Entity
-@Table(name = "tripulacion")
-public class Tripulacion extends BaseEntity {
+@Table(name ="estados")
+public class Estado extends BaseEntity{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -26,14 +25,14 @@ public class Tripulacion extends BaseEntity {
     private String nombre;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
-    private Aerolinea aerolineaId;
+    @OneToMany(mappedBy = "estado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Avion> avionesList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "tripulacionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Avion> avionList = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "estadoId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Asientos> asientosList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "tripulacionId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany(mappedBy = "estadoId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Empleados> empleadosList = new ArrayList<>();
-
 }
