@@ -12,7 +12,6 @@ import programacion3.proyectoAeropuertoLP.model.entity.*;
 import programacion3.proyectoAeropuertoLP.service.*;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
