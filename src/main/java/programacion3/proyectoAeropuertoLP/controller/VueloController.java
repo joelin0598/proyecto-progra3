@@ -78,6 +78,10 @@ public class VueloController {
                 return ResponseEntity.badRequest().body("Las fechas de salida y llegada deben ser posteriores a la fecha actual");
             }
 
+            if(vueloDto.getAeropuertoSalidaId().equals(vueloDto.getAeropuertoLlegadaId())){
+                return ResponseEntity.badRequest().body("El aeropuerto de llegada no puede ser igual al de salida");
+            }
+
             vuelo.setAerolineaId(aerolineaService.findById(vueloDto.getAerolineaId()));
             vuelo.setAvionId(avionService.findById(vueloDto.getAvionId()));
             vuelo.setAeropuertoSalidaId(aeropuertoService.findById(vueloDto.getAeropuertoSalidaId()));
@@ -94,6 +98,36 @@ public class VueloController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del sistema");
             }
     }
+
+    @GetMapping("get/listAirports")
+    public ResponseEntity <List<Aeropuerto>> listarAeropuertos(){
+
+            List<Aeropuerto> aeropuertos = aeropuertoService.findAll();
+            if (!aeropuertos.isEmpty()) {
+                return ResponseEntity.ok(aeropuertos);
+            } else {
+                return ResponseEntity.noContent().build();
+            }
+    }
+
+    @GetMapping("/tripulacion/{avionId}")
+    public ResponseEntity<?> listarEmpleadosTripulacion(@PathVariable Integer id){
+        try{
+            Avion avion = avionService.findById(id);
+            if(avion == null){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Avion no encontrado");
+            }
+            Tripulacion tripulacion = avion.getTripulacionId();
+            if(tripulacion == null){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tripulacion no encontrada para el avion");
+            }
+            List<Empleados> empleados = tripulacion.getEmpleadosList();
+            return ResponseEntity.ok(empleados);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del sistema");
+        }
+    }
+
     @GetMapping("get/fly/{id}")
     public ResponseEntity<?> consultarVuelo(@PathVariable Integer id) {
         try {
@@ -133,16 +167,6 @@ public class VueloController {
         List<Aerolinea> aerolineas = aerolineaService.findAll();
         if (!aerolineas.isEmpty()) {
             return ResponseEntity.ok(aerolineas);
-        } else {
-            return ResponseEntity.noContent().build();
-        }
-    }
-
-    @GetMapping("get/listAirports")
-    public ResponseEntity <List<Aeropuerto>> listarAeropuertos(){
-        List<Aeropuerto> aeropuertos = aeropuertoService.findAll();
-        if (!aeropuertos.isEmpty()) {
-            return ResponseEntity.ok(aeropuertos);
         } else {
             return ResponseEntity.noContent().build();
         }

@@ -33,6 +33,6 @@ public class Estado extends BaseEntity{
     private List<Asientos> asientosList = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "estadoId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "estado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Empleados> empleadosList = new ArrayList<>();
 }

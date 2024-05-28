@@ -12,6 +12,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -47,7 +49,7 @@ public class Empleados extends BaseEntity {
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "estado_id")
-    private Estado estadoId;
+    private Estado estado;
 
     @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
