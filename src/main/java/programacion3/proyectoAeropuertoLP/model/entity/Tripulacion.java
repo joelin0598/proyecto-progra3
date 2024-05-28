@@ -38,4 +38,7 @@ public class Tripulacion extends BaseEntity {
     @OneToMany(mappedBy = "tripulacionId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Empleados> empleadosList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "tripulacion",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<Vuelo> vueloList = new ArrayList<>();
+
 }

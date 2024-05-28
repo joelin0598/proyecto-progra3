@@ -39,6 +39,10 @@ public class Vuelo extends BaseEntity {
     @JoinColumn(name = "avion_id",referencedColumnName = "id")
     private Avion avionId;
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "tripulacion_id", referencedColumnName = "id")
+    private Tripulacion tripulacion;
+
     @Column(name = "asientos_disponibles")
     private Integer asientosDisponibles;
 
