@@ -30,13 +30,18 @@ public class BaseEntity implements Serializable {
     @PrePersist
     public void prePersist() {
         fechaCreacion = LocalDateTime.now();
+        fechaModificacion = LocalDateTime.now();
         if (this.creadoPor == null || this.creadoPor.isEmpty()) {
             this.creadoPor = SecurityUtil.getCurrentUser();
             if (this.creadoPor.equals("Sistema")) {
                 this.creadoPor = "Auto-Registro";
             }
         }
+        if (this.modificadoPor == null || this.modificadoPor.isEmpty()) {
+            this.modificadoPor = this.creadoPor; // Configurar modificadoPor igual a creadoPor en el momento de la creación
+        }
     }
+
 
     @PreUpdate
     public void preUpdate() {

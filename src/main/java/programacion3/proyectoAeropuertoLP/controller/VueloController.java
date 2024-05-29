@@ -41,7 +41,7 @@ public class VueloController {
     private CrudServiceProcessingController<Estado, Integer> estadoService;
 
 
-    @GetMapping("/avionesActivos/{aerolineaId}")
+    @GetMapping("/planesActiveByAirlineId/{aerolineaId}")
     public ResponseEntity<?> listarAvionesActivos(@PathVariable Integer aerolineaId) {
         try {
             Aerolinea aerolinea = aerolineaService.findById(aerolineaId);
@@ -108,8 +108,8 @@ public class VueloController {
             }
     }
 
-    @GetMapping("/get/crew/{avionId}")
-    public ResponseEntity<?> listarEmpleadosTripulacion(@PathVariable Integer avionId) {
+    @GetMapping("/get/tripulacionByPlaneId/{avionId}")
+    public ResponseEntity<?> listarTripulacionPorAvionId(@PathVariable Integer avionId) {
         try {
             Avion avion = avionService.findById(avionId);
             if (avion == null) {
@@ -120,13 +120,17 @@ public class VueloController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tripulación no encontrada para este avión");
             }
             List<Empleados> empleados = tripulacion.getEmpleadosList();
+            if (empleados.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No hay empleados asignados a esta tripulación");
+            }
             return ResponseEntity.ok(empleados);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del sistema");
         }
     }
 
-    @GetMapping("/get/crew/{id}")
+
+    @GetMapping("/get/tripulacionById/{id}")
     public ResponseEntity<?> consultarTripulacionPorId(@PathVariable Integer id) {
         try {
             Tripulacion tripulacion = tripulacionService.findById(id);
@@ -139,7 +143,7 @@ public class VueloController {
         }
     }
 
-    @GetMapping("/get/listCrewAll")
+    @GetMapping("/get/listTripulacionAll")
     public ResponseEntity<?> listarTodasLasTripulaciones() {
         try {
             List<Tripulacion> tripulaciones = tripulacionService.findAll();
@@ -152,7 +156,7 @@ public class VueloController {
         }
     }
 
-    @GetMapping("/get/fly/{id}")
+    @GetMapping("/get/flyById/{id}")
     public ResponseEntity<?> consultarVuelo(@PathVariable Integer id) {
         try {
             Vuelo vuelo = vueloService.findById(id);
@@ -166,7 +170,7 @@ public class VueloController {
         }
     }
 
-    @GetMapping("/get/listFlights")
+    @GetMapping("/get/listFlightsAll")
     public ResponseEntity<?> listarTodosLosVuelos() {
         try {
             List<Vuelo> vuelos = vueloService.findAll();
@@ -179,7 +183,7 @@ public class VueloController {
         }
     }
 
-    @GetMapping("/get/plane/{id}")
+    @GetMapping("/get/planeById/{id}")
     public ResponseEntity<?> consultarAvionPorId(@PathVariable Integer id) {
         try {
             Avion avion = avionService.findById(id);
@@ -205,7 +209,7 @@ public class VueloController {
         }
     }
 
-    @GetMapping("/get/Airline/{id}")
+    @GetMapping("/get/airlineById/{id}")
     public ResponseEntity<?> consultarAerolineaPorId(@PathVariable Integer id) {
         try {
             Aerolinea aerolinea = aerolineaService.findById(id);
@@ -231,7 +235,7 @@ public class VueloController {
         }
     }
 
-    @GetMapping("/get/Airline/{nombre}")
+    @GetMapping("/get/airlineByName/{nombre}")
     public ResponseEntity<?> buscarAerolineaPorNombre(@PathVariable String nombre) {
         try {
             Aerolinea aerolinea = aerolineaService.findByNombre(nombre);
@@ -244,7 +248,7 @@ public class VueloController {
         }
     }
 
-    @GetMapping("/get/Airport/{id}")
+    @GetMapping("/get/airportById/{id}")
     public ResponseEntity<?> consultarAeropuertoPorId(@PathVariable Integer id) {
         try {
             Aeropuerto aeropuerto = aeropuertoService.findById(id);
@@ -270,7 +274,7 @@ public class VueloController {
         }
     }
 
-    @GetMapping("/get/Airport/{nombre}")
+    @GetMapping("/get/airportByName/{nombre}")
     public ResponseEntity<?> buscarAeropuertoPorNombre(@PathVariable String nombre) {
         try {
             Aeropuerto aeropuerto = aeropuertoService.findByNombre(nombre);

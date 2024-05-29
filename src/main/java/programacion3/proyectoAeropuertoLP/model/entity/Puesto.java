@@ -1,5 +1,6 @@
 package programacion3.proyectoAeropuertoLP.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.BaseEntity;
@@ -25,6 +26,7 @@ public class Puesto extends BaseEntity {
     @Column(name = "puesto_nombre")
     private String puestoNombre;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "puestoId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Empleados> empleadosList = new ArrayList<>();
 

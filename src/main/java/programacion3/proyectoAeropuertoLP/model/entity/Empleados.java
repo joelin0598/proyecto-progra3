@@ -26,12 +26,17 @@ public class Empleados extends BaseEntity {
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "nombres")
+    private String firstName;
+
+    @Column(name = "apellidos")
+    private String lastName;
+
     @JsonIgnore
     @ManyToOne(cascade =CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "users_id",referencedColumnName = "id")
     private User userId;
 
-    @JsonIgnore
     @ManyToOne(cascade =CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "puesto_id",referencedColumnName = "id")
     private Puesto puestoId;
