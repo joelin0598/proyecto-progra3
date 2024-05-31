@@ -32,12 +32,14 @@ public class Tripulacion extends BaseEntity {
     @JoinColumn(name = "aerolinea_id",referencedColumnName = "id")
     private Aerolinea aerolineaId;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tripulacionId",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Avion> avionList = new ArrayList<>();
 
     @OneToMany(mappedBy = "tripulacionId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Empleados> empleadosList = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tripulacion",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Vuelo> vueloList = new ArrayList<>();
 

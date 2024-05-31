@@ -134,3 +134,35 @@ INSERT INTO clase_vuelo (nombre, descripcion)
 VALUES
 ('Económica', 'Clase económica'),
 ('Ejecutiva', 'Clase ejecutiva');
+
+
+Para crear un registro de vuelo basado en la estructura de tu tabla y los datos que ya tienes insertados en tu base de datos, puedes utilizar la siguiente consulta de inserción. Vamos a crear un ejemplo de registro de vuelo utilizando los datos existentes:
+
+sql
+Copiar código
+-- Insertar un vuelo en la tabla vuelo
+INSERT INTO vuelo (
+    creado_por,
+    asientos_disponibles,
+    fecha_hora_llegada,
+    fecha_hora_salida,
+    precio_clase_economica,
+    precio_clase_ejecutiva,
+    aerolinea_id,
+    aeropuerto_llegada_id,
+    aeropuerto_salida_id,
+    avion_id,
+    tripulacion_id
+) VALUES (
+    'Admin',                -- creado_por
+    150,                    -- asientos_disponibles
+    '2024-06-01 10:30:00',  -- fecha_hora_llegada
+    '2024-06-01 07:00:00',  -- fecha_hora_salida
+    300.50,                 -- precio_clase_economica
+    600.75,                 -- precio_clase_ejecutiva
+    1,                      -- aerolinea_id (American Airlines)
+    2,                      -- aeropuerto_llegada_id (Los Angeles International Airport)
+    1,                      -- aeropuerto_salida_id (John F. Kennedy International Airport)
+    1,                      -- avion_id (Boeing 737 activo)
+    1                       -- tripulacion_id (Tripulación 1)
+);

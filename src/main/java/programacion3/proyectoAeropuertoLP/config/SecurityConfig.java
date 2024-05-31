@@ -40,7 +40,8 @@ public class SecurityConfig {//SecurityFilterChain es una cadena de seguridad do
                 new AntPathRequestMatcher("/api/auth/**"),
                 new AntPathRequestMatcher("/doc/**", "GET"),
                 new AntPathRequestMatcher("/swagger-ui/**", "GET"),
-                new AntPathRequestMatcher("/v3/api-docs/**", "GET")
+                new AntPathRequestMatcher("/v3/api-docs/**", "GET"),
+                new AntPathRequestMatcher("/api/vuelos/get/listFlightsAll")
         );
     }
 }
