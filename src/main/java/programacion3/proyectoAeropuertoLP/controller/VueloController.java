@@ -160,11 +160,10 @@ public class VueloController {
     public ResponseEntity<?> consultarVuelo(@PathVariable Integer id) {
         try {
             Vuelo vuelo = vueloService.findById(id);
-            if (vuelo != null) {
-                return ResponseEntity.ok(vuelo);
-            } else {
-                return ResponseEntity.notFound().build();
+            if (vuelo == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Vuelo no encontrado");
             }
+                return ResponseEntity.ok(vuelo);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del sistema");
         }
@@ -175,7 +174,7 @@ public class VueloController {
         try {
             List<Vuelo> vuelos = vueloService.findAll();
             if (vuelos.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No se encontraron vuelos");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron vuelos");
             }
             return ResponseEntity.ok(vuelos);
         } catch (Exception e) {
@@ -201,7 +200,7 @@ public class VueloController {
         try {
             List<Avion> aviones = avionService.findAll();
             if (aviones.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No se encontraron aviones");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron aviones");
             }
             return ResponseEntity.ok(aviones);
         } catch (Exception e) {
@@ -227,7 +226,7 @@ public class VueloController {
         try {
             List<Aerolinea> aerolineas = aerolineaService.findAll();
             if (aerolineas.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No se encontraron aerolíneas");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron aerolíneas");
             }
             return ResponseEntity.ok(aerolineas);
         } catch (Exception e) {
@@ -266,7 +265,7 @@ public class VueloController {
         try {
             List<Aeropuerto> aeropuertos = aeropuertoService.findAll();
             if (aeropuertos.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No se encontraron aeropuertos");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron aeropuertos");
             }
             return ResponseEntity.ok(aeropuertos);
         } catch (Exception e) {
