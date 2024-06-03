@@ -10,5 +10,6 @@
     public interface AvionDao extends JpaRepository<Avion, Integer> {
         List<Avion> findByAerolineaId(Aerolinea aerolinea);
         List<Avion> findByAerolineaAndEstado(Aerolinea aerolinea, Estado estado);
+        List<Avion> findByAerolinea_Id(Integer aerolineaId);
     }
 

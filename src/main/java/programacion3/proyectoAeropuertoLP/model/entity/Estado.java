@@ -24,7 +24,7 @@ public class Estado extends BaseEntity{
     @Column(name = "nombre")
     private String nombre;
 
-    @JsonIgnore
+    @JsonIgnore/*@JsonManagedReference*/
     @OneToMany(mappedBy = "estado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Avion> avionesList = new ArrayList<>();
 

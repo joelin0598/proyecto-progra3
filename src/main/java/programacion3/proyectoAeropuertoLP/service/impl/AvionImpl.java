@@ -60,5 +60,11 @@ public class AvionImpl implements IAvion {
     public List<Avion> findByAerolineaAndEstado(Aerolinea aerolinea, Estado estado) {
         return avionDao.findByAerolineaAndEstado(aerolinea, estado);
     }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Avion> findByAerolineaId(Integer aerolineaId) {
+        return avionDao.findByAerolinea_Id(aerolineaId);
+    }
 }
 

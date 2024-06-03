@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(exclude = {"numeroVueloList", "destinosList", "avionList", "tripulacionList"})
 @Builder
 @Entity
 @Table(name ="aerolinea")

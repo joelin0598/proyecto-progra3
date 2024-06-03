@@ -43,7 +43,7 @@ public class VueloController {
     @Autowired
     private CrudServiceProcessingController<Estado, Integer> estadoService;
 
-    @PostMapping("/post/fly")
+    @PostMapping("/post/fly") /*Caso de Uso Crear Vuelo*/
     public ResponseEntity<?> crearVuelo(@Valid @RequestBody VueloDto vueloDto) {
         try {
             Vuelo vuelo = new Vuelo();
@@ -87,7 +87,7 @@ public class VueloController {
             }
     }
 
-    @GetMapping("/planesActiveByAirlineId/{aerolineaId}")
+    @GetMapping("/planesActiveByAirlineId/{aerolineaId}")/*Caso de Uso Crear Vuelo*/
     public ResponseEntity<?> listarAvionesActivos(@PathVariable Integer aerolineaId) {
         try {
             Aerolinea aerolinea = aerolineaService.findById(aerolineaId);
@@ -114,7 +114,7 @@ public class VueloController {
         }
     }
 
-    @GetMapping("/get/listAirportsByAirlineId/{aerolineaId}")
+    @GetMapping("/get/listAirportsByAirlineId/{aerolineaId}")/*Caso de Uso Crear Vuelo*/
     public ResponseEntity<?> listarAeropuertosPorAerolinea(@PathVariable Integer aerolineaId) {
         try {
             Aerolinea aerolinea = aerolineaService.findById(aerolineaId);
@@ -131,7 +131,7 @@ public class VueloController {
         }
     }
 
-    @GetMapping("/get/tripulacionByPlaneId/{avionId}")
+    @GetMapping("/get/tripulacionByPlaneId/{avionId}")/*Caso de Uso Crear Vuelo*/
     public ResponseEntity<?> listarTripulacionPorAvionId(@PathVariable Integer avionId) {
         try {
             Avion avion = avionService.findById(avionId);
@@ -178,7 +178,7 @@ public class VueloController {
         }
     }
 
-    @GetMapping("/get/flyById/{id}")
+    @GetMapping("/get/flyById/{id}")/*Eliminar, duplicados en ReportsController*/
     public ResponseEntity<?> consultarVuelo(@PathVariable Integer id) {
         try {
             Vuelo vuelo = vueloService.findById(id);
@@ -191,7 +191,7 @@ public class VueloController {
         }
     }
 
-    @GetMapping("/get/listFlightsAll")
+    @GetMapping("/get/listFlightsAll")/*Eliminar, duplicados en ReportsController*/
     public ResponseEntity<?> listarTodosLosVuelos() {
         try {
             List<Vuelo> vuelos = vueloService.findAll();

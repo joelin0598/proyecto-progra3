@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import programacion3.proyectoAeropuertoLP.model.entity.AuthAndRegister.BaseEntity;
-
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +30,7 @@ public class Avion extends BaseEntity {
     @JoinColumn(name = "tripulacion_id",referencedColumnName = "id")
     private Tripulacion tripulacionId;
 
-    @JsonIgnore
+    @JsonIgnore/*@JsonBackReference*/
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "estado_id")
     private Estado estado;

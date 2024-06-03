@@ -14,4 +14,5 @@ public interface IAvion {
     void delete(Avion avion);
     List<Avion> findByAerolineaId(Aerolinea aerolinea);
     List<Avion> findByAerolineaAndEstado(Aerolinea aerolinea, Estado estado);
+    List<Avion> findByAerolineaId(Integer aerolineaId);
 }
