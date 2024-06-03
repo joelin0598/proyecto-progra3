@@ -12,8 +12,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class VueloDto {
 
-    private Integer id;
-
     @NotNull
     private Integer aerolineaId;
 

@@ -11,6 +11,8 @@ package programacion3.proyectoAeropuertoLP.model.entity;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @ToString
 @Builder
 @Entity

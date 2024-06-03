@@ -4,14 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import programacion3.proyectoAeropuertoLP.model.dao.DestinoDao;
+import programacion3.proyectoAeropuertoLP.model.entity.Aerolinea;
+import programacion3.proyectoAeropuertoLP.model.entity.Aeropuerto;
 import programacion3.proyectoAeropuertoLP.model.entity.Destino;
 import programacion3.proyectoAeropuertoLP.service.CrudServiceProcessingController;
+import programacion3.proyectoAeropuertoLP.service.IDestino;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-public class DestinoImpl implements CrudServiceProcessingController<Destino, Integer>{
+public class DestinoImpl implements IDestino {
 
     @Autowired
     private DestinoDao destinoDao;
@@ -48,5 +52,14 @@ public class DestinoImpl implements CrudServiceProcessingController<Destino, Int
     @Override
     public void delete(Destino destino) {
         destinoDao.delete(destino);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Aeropuerto> findAeropuertosByAerolinea(Aerolinea aerolinea) {
+        List<Destino> destinos = destinoDao.findByAerolineaId(aerolinea);
+        return destinos.stream()
+                .map(Destino::getAeropuertoId)
+                .distinct()
+                .collect(Collectors.toList());
     }
 }
