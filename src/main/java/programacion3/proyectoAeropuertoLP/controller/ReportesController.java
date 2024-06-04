@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import programacion3.proyectoAeropuertoLP.model.entity.Aerolinea;
-import programacion3.proyectoAeropuertoLP.model.entity.Aeropuerto;
-import programacion3.proyectoAeropuertoLP.model.entity.Avion;
-import programacion3.proyectoAeropuertoLP.model.entity.Vuelo;
+import programacion3.proyectoAeropuertoLP.model.entity.*;
 import programacion3.proyectoAeropuertoLP.service.CrudServiceProcessingController;
 import programacion3.proyectoAeropuertoLP.service.IAvion;
 import programacion3.proyectoAeropuertoLP.service.IDestino;
 import programacion3.proyectoAeropuertoLP.service.IVuelo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/reports")
@@ -30,6 +30,9 @@ public class ReportesController {
 
     @Autowired
     private IVuelo vueloService;
+
+    @Autowired
+    private CrudServiceProcessingController<Aeropuerto, Integer> aeropuertoService;
 
     @Autowired
     private CrudServiceProcessingController<Aerolinea, Integer> aerolineaService;
@@ -87,6 +90,39 @@ public class ReportesController {
             }
             return ResponseEntity.ok(vuelo);
         }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del sistema");
+        }
+    }
+
+    @GetMapping("/get/airlinesByAirport/{aeropuertoId}")/*Caso de Uso Reporte de Aerolineas*/
+    public ResponseEntity<?> listarAerolineasPorAeropuerto(@PathVariable Integer aeropuertoId) {
+        try {
+            Aeropuerto aeropuerto = aeropuertoService.findById(aeropuertoId);
+            if (aeropuerto == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Aeropuerto no encontrado");
+            }
+
+            List<Destino> destinos = destinoServie.findByAeropuerto(aeropuerto);
+            if (destinos.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontraron destinos autorizados para este aeropuerto");
+            }
+
+            List<Map<String, Object>> response = new ArrayList<>();
+            for (Destino destino : destinos) {
+                Aerolinea aerolinea = destino.getAerolineaId();
+                int cantidadAviones = avionService.findByAerolineaId(aerolinea.getId()).size();
+                int cantidadDestinos = destinoServie.findByAerolineaId(aerolinea.getId()).size();
+
+                Map<String, Object> aerolineaData = new HashMap<>();
+                aerolineaData.put("nombreAerolinea", aerolinea.getNombre());
+                aerolineaData.put("cantidadAviones", cantidadAviones);
+                aerolineaData.put("cantidadDestinos", cantidadDestinos);
+
+                response.add(aerolineaData);
+            }
+
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del sistema");
         }
     }

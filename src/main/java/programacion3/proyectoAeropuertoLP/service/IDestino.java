@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface IDestino extends CrudServiceProcessingController<Destino, Integer>{
     List<Aeropuerto> findAeropuertosByAerolinea(Aerolinea aerolinea);
+    List<Destino> findByAeropuerto(Aeropuerto aeropuerto);
+    List<Destino> findByAerolineaId(Integer aerolineaId);
 }

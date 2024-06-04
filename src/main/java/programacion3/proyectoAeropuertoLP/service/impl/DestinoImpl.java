@@ -62,4 +62,16 @@ public class DestinoImpl implements IDestino {
                 .distinct()
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Destino> findByAeropuerto(Aeropuerto aeropuerto) {
+        return destinoDao.findByAeropuertoId(aeropuerto);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Destino> findByAerolineaId(Integer aerolineaId) {
+        return destinoDao.findDestinosByAerolineaId(aerolineaId);
+    }
 }
